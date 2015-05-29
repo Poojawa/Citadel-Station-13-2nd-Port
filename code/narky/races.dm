@@ -256,6 +256,20 @@ datum
 			generic="abductor"
 			adjective="spooky"
 			restricted=2
+		plasmaman
+			//name="Plasmabone"
+			id="plasmaman"
+			generic="plasmaman"
+			adjective="toxic"
+			restricted=2
+		plasmaman/skin
+			//name="Skinbone"
+			id="plasmaman"
+			generic="plasmaman"
+			adjective="toxic"
+			restricted=2
+
+
 
 
 /*var/list/kpcode_race_list

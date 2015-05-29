@@ -190,7 +190,7 @@
 	amount = 5
 	recharge_delay = 30
 	dispensable_reagents = list()
-	var/list/special_reagents = list(list("hydrogen", "oxygen", "silicon", "phosphorus", "sulfur", "carbon", "nitrogen", "water"),
+	var/list/special_reagents = list(list("hydrogen", "oxygen", "silicon", "phosphorus", "sulfur", "carbon", "nitrogen", "water", "vorechem"),
 						 		list("lithium", "sugar", "sacid", "copper", "mercury", "sodium","iodine","bromine"),
 								list("ethanol", "chlorine", "potassium", "aluminium", "radium", "fluorine", "iron", "welding_fuel","silver","stable_plasma"))
 
@@ -328,18 +328,18 @@
 		mode = !mode
 
 	else if(href_list["createbottle"])
-		if(!condi)
-			var/name = stripped_input(usr, "Name:","Name your bottle!", (reagents.total_volume ? reagents.get_master_reagent_name() : " "), MAX_NAME_LEN)
-			if(!name)
-				return
-			var/obj/item/weapon/reagent_containers/glass/bottle/P = new/obj/item/weapon/reagent_containers/glass/bottle(src.loc)
-			P.name = trim("[name] bottle")
+		var/name = stripped_input(usr, "Name:","Name your bottle!", (reagents.total_volume ? reagents.get_master_reagent_name() : " "), MAX_NAME_LEN)
+		if(!name)
+			return
+		var/obj/item/weapon/reagent_containers/P
+		if(condi)
+			P = new/obj/item/weapon/reagent_containers/food/condiment(src.loc)
+		else
+			P = new/obj/item/weapon/reagent_containers/glass/bottle(src.loc)
 			P.pixel_x = rand(-7, 7) //random position
 			P.pixel_y = rand(-7, 7)
-			reagents.trans_to(P, 30)
-		else
-			var/obj/item/weapon/reagent_containers/food/condiment/P = new/obj/item/weapon/reagent_containers/food/condiment(src.loc)
-			reagents.trans_to(P, 50)
+		P.name = trim("[name] bottle")
+		reagents.trans_to(P, P.volume)
 
 	if(beaker)
 

@@ -34,7 +34,6 @@
 				t_him = "her"
 
 	msg += "<EM>[src.name]</EM>!\n"
-	var/insuit_handled=0
 
 	//uniform
 	if(w_uniform && !(slot_w_uniform in obscured))
@@ -49,9 +48,6 @@
 			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[w_uniform] [w_uniform.gender==PLURAL?"some":"a"] blood-stained [w_uniform.name][tie_msg]!</span>\n"
 		else
 			msg += "[t_He] [t_is] wearing \icon[w_uniform] \a [w_uniform][tie_msg].\n"
-		if(vore_insuit_datum.has_people())
-			msg += "<span class='warning'>There is a person-shaped bulge under the fabric!</span>\n"
-			insuit_handled=1
 
 	//head
 	if(head)
@@ -66,8 +62,6 @@
 			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[wear_suit] [wear_suit.gender==PLURAL?"some":"a"] blood-stained [wear_suit.name]!</span>\n"
 		else
 			msg += "[t_He] [t_is] wearing \icon[wear_suit] \a [wear_suit].\n"
-	if(vore_insuit_datum.has_people()&&!insuit_handled)
-		msg += "<span class='warning'>The fabric is moving!</span>\n"
 
 		//suit/armor storage
 		if(s_store)
@@ -128,11 +122,6 @@
 			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[shoes] [shoes.gender==PLURAL?"some":"a"] blood-stained [shoes.name] on [t_his] feet!</span>\n"
 		else
 			msg += "[t_He] [t_is] wearing \icon[shoes] \a [shoes] on [t_his] feet.\n"
-		if(vore_insole_datum.has_people()&&!(shoes.body_parts_covered&FEET))
-			var/insole_count=0
-			for(var/mob/M in vore_insole_datum.contents)
-				msg += "<span class='warning'>[M] is tied to [t_his] [insole_count ? "other " : ""]foot!</span>\n"
-				insole_count+=1
 
 	//mask
 	if(wear_mask && !(slot_wear_mask in obscured))
@@ -246,23 +235,6 @@
 			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
 		else
 			msg += "[t_He] [t_is] quite chubby.\n"
-
-	if( (vore_womb_datum.has_people()||vore_stomach_datum.has_people()) && !(slot_w_uniform in obscured) )
-		msg += "It seems [t_his] belly is shifting around slighty.\n"
-	if( (vore_breast_datum.has_people()||vore_breast_datum.digestion_count) && !(slot_w_uniform in obscured) )
-		msg += "It seems [t_his] breasts are heavy with milk.\n"
-	if( !(slot_w_uniform in obscured) && (!w_uniform||!(w_uniform.body_parts_covered&GROIN)) )
-		if(vore_cock_datum.has_people()||vore_cock_datum.digestion_count)
-			msg += "It looks like [t_his] cock is full.\n"
-		if(vore_balls_datum.has_people()||vore_balls_datum.digestion_count)
-			msg += "It looks like [t_his] balls are full.\n"
-	if(vore_tail_datum.has_people())
-		msg += "[t_He] has a bulge in [t_his] tail."
-		if(vore_tail_datum.transfer_factor)
-			msg += " It moves slowly toward the base."
-		msg += "\n"
-
-	msg += "</span>"
 
 	if(pale)
 		msg += "[t_He] [t_has] pale skin.\n"

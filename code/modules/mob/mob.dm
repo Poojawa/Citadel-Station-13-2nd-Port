@@ -81,7 +81,6 @@ var/next_mob_id = 0
 // self_message (optional) is what the src mob sees e.g. "You do something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 
-
 /mob/visible_message(var/message, var/self_message, var/blind_message)
 	var/mob/origin=src.get_top_level_mob()
 	for(var/mob/M in viewers(origin))
@@ -102,6 +101,9 @@ var/next_mob_id = 0
 			continue
 		M.visible_message_inside(message,self_message,blind_message, message_source)
 
+
+
+//Shitty way of handling things. But it's only until I can find the snippet that hides people in containers from using the 'me' commands.
 
 /*
 /mob/visible_message(var/message, var/self_message, var/blind_message)
@@ -301,7 +303,7 @@ proc/get_top_level_mob(var/mob/S)
 			qdel(W)
 		else
 			if(!disable_warning)
-				src << "<span class='warning'>You are unable to equip that!</span>" //Only print if qdel_on_fail is false
+				src << "<span class='danger'>You are unable to equip that.</span>" //Only print if qdel_on_fail is false
 		return 0
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 	return 1
@@ -509,15 +511,48 @@ var/list/slot_equipment_priority = list( \
 	if (popup)
 		memory()
 
+
+/mob/proc/update_flavor_text()
+	set src in usr
+	if(usr != src)
+		usr << "No."
+	var/msg = input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null
+
+	if(msg != null)
+		msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+		msg = html_encode(msg)
+
+		flavor_text = msg
+
+/mob/proc/warn_flavor_changed()
+	if(flavor_text && flavor_text != "") // don't spam people that don't use it!
+		src << "<h2 class='alert'>OOC Warning:</h2>"
+		src << "<span class='alert'>Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a></span>"
+
+/mob/proc/print_flavor_text()
+	if (flavor_text && flavor_text != "")
+		var/msg = replacetext(flavor_text, "\n", " ")
+		if(lentext(msg) <= 40)
+			return "\blue [msg]"
+		else
+			return "\blue [copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+
 /mob/verb/abandon_mob()
 	set name = "Respawn"
 	set category = "OOC"
 
-	if (!( abandon_allowed ))
+	if (!( abandon_allowed ) && !is_whitelisted(ckey))
 		return
 	if ((stat != 2 || !( ticker )))
 		usr << "<span class='boldnotice'>You must be dead to use this!</span>"
 		return
+
+	var/was_observing = 0
+	if(istype(src,/mob/dead/observer))
+		var/mob/dead/observer/spook=src
+		was_observing=spook.started_as_observer
+	log_game("[usr.name]/[usr.key] used respawn.[was_observing ? "(Was Not Playing)" : "(Was Playing)"]")
+	message_admins("[usr.name]/[usr.key] is respawning. [was_observing ? "(Was Not Playing)" : "(Was Playing)"]")
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 
@@ -666,6 +701,14 @@ var/list/slot_equipment_priority = list( \
 		var/t1 = text("window=[href_list["mach_close"]]")
 		unset_machine()
 		src << browse(null, t1)
+/*
+	if(href_list["flavor_more"])
+		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
+		onclose(usr, "[name]")
+	if(href_list["flavor_change"])
+		update_flavor_text()*/
+//	..()
+	return
 
 	if(href_list["refresh"])
 		if(machine && in_range(src, usr))
@@ -686,6 +729,7 @@ var/list/slot_equipment_priority = list( \
 			show_inv(usr)
 		else
 			usr << browse(null,"window=mob\ref[src]")
+
 
 // The src mob is trying to strip an item from someone
 // Defined in living.dm
@@ -825,12 +869,6 @@ var/list/slot_equipment_priority = list( \
 			fall(ko)
 	canmove = !(ko || resting || stunned || buckled)
 	density = !lying
-	if(lying)
-		if(layer == initial(layer)) //to avoid special cases like hiding larvas.
-			layer = MOB_LAYER - 0.2 //so mob lying always appear behind standing mobs
-	else
-		if(layer == MOB_LAYER - 0.2)
-			layer = initial(layer)
 	update_transform()
 	lying_prev = lying
 	return canmove

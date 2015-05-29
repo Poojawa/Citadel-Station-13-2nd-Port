@@ -59,6 +59,7 @@
 	var/canmove = 1
 	var/eye_stat = null//Living, potentially Carbon
 	var/lastpuke = 0
+	var/flavor_text = ""
 
 	var/name_archive //For admin things like possession
 

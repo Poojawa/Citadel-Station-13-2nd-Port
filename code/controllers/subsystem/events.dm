@@ -54,6 +54,38 @@ var/datum/subsystem/events/SSevent
 //decides which world.time we should select another random event at.
 /datum/subsystem/events/proc/reschedule()
 	scheduled = world.time + rand(frequency_lower, max(frequency_lower,frequency_upper))
+	if(world.time >= 36000 && world.time < 72000) //More than an hour has passed
+		if(frequency_lower>2000)
+			frequency_lower-=250
+		if(frequency_upper>6000)
+			frequency_upper-=500
+	else if(world.time >= 72000 && world.time < 90000) //Two hours
+		if(frequency_lower>2000)
+			frequency_lower=2000
+		else if(frequency_lower>1000)
+			frequency_lower-=250
+		if(frequency_upper>6000)
+			frequency_upper=6000
+		else if(frequency_upper>3000)
+			frequency_upper-=500
+	else if(world.time >= 90000 && world.time < 108000) //Two and a half hours?!
+		if(frequency_lower>1000)
+			frequency_lower=1000
+		frequency_lower=1000
+		if(frequency_upper>3000)
+			frequency_upper=3000
+		else if(frequency_upper>1500)
+			frequency_upper-=500
+	else if(world.time > 108000) //Three.
+		frequency_lower=1000
+		frequency_upper=1500
+		//if ((!( ticker ) || emergency_shuttle.location))
+		//if(SSshuttle.emergency.mode == SHUTTLE_DOCKED || SSshuttle.emergency.mode == SHUTTLE_CALL)
+		//	return
+		if(SSshuttle.emergency.mode < SHUTTLE_CALL)
+			SSshuttle.emergency.request(null, 1.5)
+			log_game("Round time limit reached. Shuttle has been auto-called.")
+			message_admins("Round time limit reached. Shuttle called.")
 
 //selects a random event based on whether it can occur and it's 'weight'(probability)
 /datum/subsystem/events/proc/spawnEvent()

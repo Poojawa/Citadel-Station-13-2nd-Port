@@ -247,9 +247,7 @@
 			if(M.loc != src)
 				stomach_contents.Remove(M)
 				continue
-		for(var/datum/vore_organ/organ in src.vore_organ_list())
-			organ.digest()
-			/*if(istype(M, /mob/living/carbon) && stat != 2)
+			if(istype(M, /mob/living/carbon) && stat != 2)
 				if(M.stat == 2)
 					M.death(1)
 					stomach_contents.Remove(M)
@@ -258,7 +256,7 @@
 				if(SSmob.times_fired%3==1)
 					if(!(M.status_flags & GODMODE))
 						M.adjustBruteLoss(5)
-					nutrition += 10*/
+					nutrition += 10
 
 //This updates the health and status of the mob (conscious, unconscious, dead)
 /mob/living/carbon/handle_regular_status_updates()

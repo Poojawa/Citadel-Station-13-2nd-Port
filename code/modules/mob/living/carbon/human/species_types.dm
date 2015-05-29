@@ -3,12 +3,12 @@
 */
 
 /datum/species/human
-	name = "Human"
+	name = "human"
 	id = "human"
 	roundstart = 1
-	specflags = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
+	//specflags = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
 	use_skintones = 1
-
+/*
 /datum/species/human/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "mutationtoxin")
 		H << "<span class='danger'>Your flesh rapidly mutates!</span>"
@@ -16,7 +16,7 @@
 		H.regenerate_icons()
 		H.reagents.del_reagent(chem.type)
 		H.faction |= "slime"
-		return 1
+		return 1*/
 
 /*
  LIZARDPEOPLE
@@ -24,13 +24,13 @@
 
 /datum/species/lizard
 	// Reptilian humanoids with scaled skin and tails.
-	name = "Lizardperson"
+	name = "Lizard"
 	id = "lizard"
 	say_mod = "hisses"
 	default_color = "00FF00"
 	roundstart = 1
 	specflags = list(MUTCOLORS,EYECOLOR,LIPS)
-	mutant_bodyparts = list("tail", "snout")
+	//mutant_bodyparts = list("tail", "snout")
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -38,8 +38,8 @@
 
 /datum/species/lizard/handle_speech(message)
 	// jesus christ why
-	if(copytext(message, 1, 2) != "*")
-		message = replacetext(message, "s", "sss")
+	/*if(copytext(message, 1, 2) != "*")
+		message = replacetext(message, "s", "sss")*/
 
 	return message
 
@@ -52,7 +52,8 @@
 	name = "Plant"
 	id = "plant"
 	default_color = "59CE00"
-	specflags = list(MUTCOLORS,EYECOLOR)
+	//specflags = list(MUTCOLORS,EYECOLOR)
+	specflags = list(EYECOLOR,HAIR)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -197,7 +198,8 @@
 	default_color = "00FF90"
 	say_mod = "chirps"
 	eyes = "jelleyes"
-	specflags = list(MUTCOLORS,EYECOLOR,NOBLOOD)
+	//specflags = list(MUTCOLORS,EYECOLOR,NOBLOOD)
+	specflags = list(EYECOLOR,HAIR,NOBLOOD)
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/slime
 	exotic_blood = /datum/reagent/toxin/slimejelly
 	var/recently_changed = 1
@@ -377,11 +379,13 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 
 	if(!istype(H.wear_suit, /obj/item/clothing/suit/space/eva/plasmaman) || !istype(H.head, /obj/item/clothing/head/helmet/space/hardsuit/plasmaman))
 		if(environment)
-			if((environment.oxygen /environment.total_moles()) >= 0.01)
-				if(!H.on_fire)
-					H.visible_message("<span class='danger'>[H]'s body reacts with the atmosphere and bursts into flames!</span>","<span class='userdanger'>Your body reacts with the atmosphere and bursts into flame!</span>")
-				H.adjust_fire_stacks(0.5)
-				H.IgniteMob()
+			var/total_moles = environment.total_moles()
+			if(total_moles)
+				if((environment.oxygen /total_moles) >= 0.01)
+					if(!H.on_fire)
+						H.visible_message("<span class='danger'>[H]'s body reacts with the atmosphere and bursts into flames!</span>","<span class='userdanger'>Your body reacts with the atmosphere and bursts into flame!</span>")
+					H.adjust_fire_stacks(0.5)
+					H.IgniteMob()
 	else
 		if(H.fire_stacks)
 			var/obj/item/clothing/suit/space/eva/plasmaman/P = H.wear_suit

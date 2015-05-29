@@ -1,5 +1,9 @@
 // This code handles different species in the game.
 
+#define SPECIES_LAYER			24
+#define BODY_LAYER				23
+#define HAIR_LAYER				9
+
 #define TINT_IMPAIR 2
 #define TINT_BLIND 3
 
@@ -40,7 +44,7 @@
 	var/dangerous_existence = 0 //A flag for transformation spells that tells them "hey if you turn a person into one of these without preperation, they'll probably die!"
 	var/say_mod = "says"	// affects the speech message
 
-	var/list/mutant_bodyparts = list() 	// Parts of the body that are diferent enough from the standard human model that they cause clipping with some equipment
+	//var/list/mutant_bodyparts = list() 	// Parts of the body that are diferent enough from the standard human model that they cause clipping with some equipment
 
 	var/speedmod = 0	// this affects the race's speed. positive numbers make it move slower, negative numbers make it move faster
 	var/armor = 0		// overall defense for the race... or less defense, if it's negative.
@@ -54,7 +58,8 @@
 	var/darksight = 2
 
 	// species flags. these can be found in flags.dm
-	var/list/specflags = list()
+	//var/list/specflags = list()
+	var/list/specflags = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
 
 	var/attack_verb = "punch"	// punch-specific attack verb
 	var/sound/attack_sound = 'sound/weapons/punch1.ogg'
@@ -101,9 +106,9 @@
 
 	var/image/standing
 
-	var/g = (H.gender == FEMALE) ? "f" : "m"
+	//var/g = (H.gender == FEMALE) ? "f" : "m"
 
-	if(MUTCOLORS in specflags)
+	/*if(MUTCOLORS in specflags)
 		var/image/spec_base
 		var/icon_state_string = "[id]_"
 		if(sexes)
@@ -114,7 +119,7 @@
 		spec_base = image("icon" = 'icons/mob/human.dmi', "icon_state" = icon_state_string, "layer" = -SPECIES_LAYER)
 
 		spec_base.color = "#[H.dna.mutant_color]"
-		standing = spec_base
+		standing = spec_base*/
 
 	if(standing)
 		H.overlays_standing[SPECIES_LAYER]	+= standing
@@ -184,7 +189,10 @@
 
 	var/list/standing	= list()
 
-	handle_mutant_bodyparts(H)
+	if(id!="human")
+		standing += generate_colour_icon('icons/mob/human.dmi',"[H.base_icon_state]_s",H.dna.special_color,add_layer=-BODY_LAYER,overlay_only=1)
+
+	//handle_mutant_bodyparts(H)
 
 	// lipstick
 	if(H.lip_style && LIPS in specflags)
@@ -268,6 +276,7 @@
 		standing += generate_colour_icon('icons/mob/special/test.dmi',"",H.dna.special_color,add_layer=-BODY_LAYER)
 		*/
 
+
 	if(standing.len)
 		H.overlays_standing[BODY_LAYER] = standing
 
@@ -275,6 +284,7 @@
 
 	return
 
+/*
 /datum/species/proc/handle_mutant_bodyparts(var/mob/living/carbon/human/H)
 	var/list/bodyparts_to_add = mutant_bodyparts.Copy()
 	var/list/relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER, BODY_FRONT_LAYER)
@@ -310,8 +320,7 @@
 	for(var/layer in relevent_layers)
 		for(var/bodypart in bodyparts_to_add)
 			I = image("icon" = 'icons/mob/mutant_bodyparts.dmi', "icon_state" = "[icon_state_string]_[bodypart]_[layer]", "layer" =- layer)
-			if(!(H.disabilities & HUSK))
-				I.color = "#[H.dna.mutant_color]"
+			I.color = "#[H.dna.mutant_color]"
 			standing += I
 		H.overlays_standing[layer] = standing.Copy()
 		standing = list()
@@ -319,6 +328,7 @@
 	H.apply_overlay(BODY_BEHIND_LAYER)
 	H.apply_overlay(BODY_ADJ_LAYER)
 	H.apply_overlay(BODY_FRONT_LAYER)
+	*/
 
 /datum/species/proc/spec_life(var/mob/living/carbon/human/H)
 	return
@@ -906,7 +916,7 @@
 	// Allows you to put in item-specific reactions based on species
 	if(user != src)
 		user.do_attack_animation(H)
-	if((user != H) && H.check_shields(I.force, "the [I.name]"))
+	if((user != H) && H.check_shields(I.force, "the [I.name]", I))
 		return 0
 
 	if(I.attack_verb && I.attack_verb.len)
