@@ -10,6 +10,7 @@
 	verb_say = "beeps"
 	verb_ask = "beeps"
 	verb_exclaim = "beeps"
+	verb_whimsies = "beeps"
 	var/listening = 0
 	var/recorded = "" //the activation message
 

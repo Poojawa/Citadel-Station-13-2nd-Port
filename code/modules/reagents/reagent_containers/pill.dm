@@ -98,11 +98,11 @@
 	icon_state = "pill19"
 	list_reagents = list("ephedrine" = 10, "antihol" = 10, "coffee" = 30)
 	roundstart = 1
-/obj/item/weapon/reagent_containers/pill/salbutamol
-	name = "salbutamol pill"
+/obj/item/weapon/reagent_containers/pill/dexalin
+	name = "Dexalin PIll"
 	desc = "Used to treat oxygen deprivation."
-	icon_state = "pill18"
-	list_reagents = list("salbutamol" = 30)
+	icon_state = "pill16"
+	list_reagents = list("dexalin" = 30)
 	roundstart = 1
 /obj/item/weapon/reagent_containers/pill/charcoal
 	name = "antitoxin pill"

@@ -33,7 +33,7 @@
 	radio_frequency = MED_FREQ //Medical frequency
 	//Setting which reagents to use to treat what by default. By id.
 	var/treatment_brute = "salglu_solution"
-	var/treatment_oxy = "salbutamol"
+	var/treatment_oxy = "dexalin"
 	var/treatment_fire = "salglu_solution"
 	var/treatment_tox = "charcoal"
 	var/treatment_virus = "spaceacillin"

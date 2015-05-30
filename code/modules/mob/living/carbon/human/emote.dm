@@ -1,3 +1,8 @@
+var/global/fartholdin = 1
+var/global/cansuperfart = 1
+var/global/exception = 1
+var/global/ticker.current_state = 3
+
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
 	var/param = null
 
@@ -297,19 +302,141 @@
 			else
 				..(act)
 
+
 		if ("whimper")
 			if (miming)
 				message = "<B>[src]</B> appears hurt."
 			else
 				..(act)
 
-		if ("yawn")
-			if (!muzzled)
-				message = "<B>[src]</B> yawns."
-				m_type = 2
+		if ("fart")
+			var/obj/item/organ/butt/B = null
+			B = locate() in src.internal_organs
+			if(!B)
+				src << "\red You don't have a butt!"
+				return
+			if(src.HasDisease(/datum/disease/assinspection))
+				src << "<span class='danger'>Your ass hurts too much.</span>"
+				return
+			for(var/mob/living/M in range(0)) //Bye ghost farts, you will be missed :'(
+				if(M != src)
+					visible_message("\red <b>[src]</b> farts in <b>[M]</b>'s face!")
+				else
+					continue
+			message = "<B>[src]</B> [pick(
+			"rears up and lets loose a fart of tremendous magnitude!",
+			"farts!",
+			"toots.",
+			"harvests methane from uranus at mach 3!",
+			"assists global warming!",
+			"farts and waves their hand dismissively.",
+			"farts and pretends nothing happened.",
+			"is a <b>farting</b> motherfucker!",
+			"<B><font color='red'>f</font><font color='blue'>a</font><font color='red'>r</font><font color='blue'>t</font><font color='red'>s</font></B>")]"
+			playsound(src.loc, 'sound/misc/fart.ogg', 50, 1, 5)
+			if(prob(12))
+				B = locate() in src.internal_organs
+				if(B)
+					src.internal_organs -= B
+					new /obj/item/organ/butt(src.loc)
+					new /obj/effect/decal/cleanable/blood(src.loc)
+				for(var/mob/living/M in range(0))
+					if(M != src)
+						visible_message("\red <b>[src]</b>'s ass hits <b>[M]</b> in the face!", "\red Your ass smacks <b>[M]</b> in the face!")
+						M.apply_damage(15,"brute","head")
+				visible_message("\red <b>[src]</b> blows their ass off!", "\red Holy shit, your butt flies off in an arc!")
+		if("superfart") //how to remove ass
+			exception = 1
+			if (ticker.current_state == 3)//safety1
+				if(world.time < fartholdin)//safety2
+					src << "Your ass is not ready to blast."
+					return
+				else
+					if(cansuperfart)
+						var/obj/item/organ/butt/B = null
+						B = locate() in src.internal_organs
+						if(!B)
+							src << "\red You don't have a butt!"
+							return
+						else if(B)
+							src.internal_organs -= B
+						//src.butt = null
+						src.nutrition -= 500 //vv THIS CODE IS MELTING MY EYES AND I'M NOT ALLOWED TO FIX IT HELP vv
+						playsound(src.loc, 'sound/misc/fart.ogg', 50, 1, 5)
+						spawn(1)
+							playsound(src.loc, 'sound/misc/fart.ogg', 50, 1, 5)
+							spawn(1)
+								playsound(src.loc, 'sound/misc/fart.ogg', 50, 1, 5)
+								spawn(1)
+									playsound(src.loc, 'sound/misc/fart.ogg', 50, 1, 5)
+									spawn(1)
+										playsound(src.loc, 'sound/misc/fart.ogg', 50, 1, 5)
+										spawn(1)
+											playsound(src.loc, 'sound/misc/fart.ogg', 50, 1, 5)
+											spawn(1)
+												playsound(src.loc, 'sound/misc/fart.ogg', 50, 1, 5)
+												spawn(1)
+													playsound(src.loc, 'sound/misc/fart.ogg', 50, 1, 5)
+													spawn(1)
+														playsound(src.loc, 'sound/misc/fart.ogg', 50, 1, 5)
+														spawn(1)
+															playsound(src.loc, 'sound/misc/fart.ogg', 50, 1, 5)
+															spawn(5)
+																playsound(src.loc, 'sound/misc/fartmassive.ogg', 75, 1, 5)
+																new /obj/item/organ/butt(src.loc)
+																new /obj/effect/decal/cleanable/blood(src.loc)
+																if(src.HasDisease(/datum/disease/assinspection))
+																	src << "<span class='danger'>It hurts so much!</span>"
+																	apply_damage(50, BRUTE, "chest")
+																if(prob(76))
+																	for(var/mob/living/M in range(0))
+																		if(M != src)
+																			visible_message("\red <b>[src]</b>'s ass blasts <b>[M]</b> in the face!", "\red You ass blast <b>[M]</b>!")
+																			M.apply_damage(75,"brute","head")
+																		else
+																			continue
+																	visible_message("\red <b>[src]</b> blows their ass off!", "\red Holy shit, your butt flies off in an arc!")
+																else if(prob(12))
+																	var/startx = 0
+																	var/starty = 0
+																	var/endy = 0
+																	var/endx = 0
+																	var/startside = pick(cardinal)
+
+																	switch(startside)
+																		if(NORTH)
+																			starty = src.loc
+																			startx = src.loc
+																			endy = 38
+																			endx = rand(41, 199)
+																		if(EAST)
+																			starty = src.loc
+																			startx = src.loc
+																			endy = rand(38, 187)
+																			endx = 41
+																		if(SOUTH)
+																			starty = src.loc
+																			startx = src.loc
+																			endy = 187
+																			endx = rand(41, 199)
+																		else
+																			starty = src.loc
+																			startx = src.loc
+																			endy = rand(38, 187)
+																			endx = 199
+
+																	//ASS BLAST USA
+																	visible_message("\red <b>[src]</b> blows their ass off with such force, it turns into an immovable ass!", "\red Holy shit, your butt flies off into the galaxy!")
+																	usr.gib() //can you belive I forgot to put this here?? yeah you need to see the message BEFORE you gib
+																	new /obj/effect/immovablerod/butt(locate(startx, starty, 1), locate(endx, endy, 1))
+																	priority_announce("What the fuck was that?!", "Assblast Alert")
+																else if(prob(12))
+																	visible_message("\red <b>[src]</b> rips their ass apart in a massive explosion!", "\red Holy shit, your butt goes supernova!")
+																	explosion(src.loc,0,1,3,flame_range = 3)
+																	usr.gib()
 
 		if ("help") //This can stay at the bottom.
-			src << "Help for human emotes. You can use these emotes with say \"*emote\":\n\naflap, airguitar, blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough, cry, custom, dance, dap, deathgasp, drool, eyebrow, faint, flap, frown, gasp, giggle, glare-(none)/mob, grin, groan, grumble, handshake, hug-(none)/mob, jump, laugh, look-(none)/mob, me, moan, mumble, nod, pale, point-(atom), raise, salute, scream, shake, shiver, shrug, sigh, signal-#1-10, sit, smile, sneeze, sniff, snore, stare-(none)/mob, sulk, sway, tremble, twitch, twitch_s, wave, whimper, wink, yawn"
+			src << "Help for human emotes. You can use these emotes with say \"*emote\":\n\naflap, airguitar, blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough, cry, custom, dance, dap, deathgasp, drool, eyebrow, faint, fart, superfart, flap, frown, gasp, giggle, glare-(none)/mob, grin, groan, grumble, handshake, hug-(none)/mob, jump, laugh, look-(none)/mob, me, moan, mumble, nod, pale, point-(atom), raise, salute, scream, shake, shiver, shrug, sigh, signal-#1-10, sit, smile, sneeze, sniff, snore, stare-(none)/mob, sulk, sway, tremble, twitch, twitch_s, wave, whimper, wink, yawn"
 
 		else
 			..(act)
@@ -337,3 +464,13 @@
 		else if (m_type & 2)
 			audible_message(message)
 
+
+
+/*
+/mob/living/carbon/human/verb/pose()
+	set name = "Set Pose"
+	set desc = "Sets a description which will be shown when someone examines you."
+	set category = "IC"
+
+	pose =  sanitize(copytext(input(usr, "This is [src]. \He is...", "Pose", null)  as text, 1, MAX_MESSAGE_LEN))
+*/

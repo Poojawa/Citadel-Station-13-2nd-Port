@@ -111,14 +111,6 @@
 			leaping = 0
 			update_canmove()
 
-
-
-/mob/living/carbon/alien/humanoid/float(on)
-	if(leaping)
-		return
-	..()
-
-
 //Modified throw_at() that will use diagonal dirs where appropriate
 //instead of locking it to cardinal dirs
 /mob/living/carbon/alien/humanoid/throw_at(atom/target, range, speed)

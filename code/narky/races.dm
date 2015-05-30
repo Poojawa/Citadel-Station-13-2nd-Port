@@ -209,13 +209,13 @@ datum
 		skeleton
 			//name="skeleton"
 			generic="human"
-			adjective="boney"
+			adjective="very boney"
 			restricted=2
 			attack_verb = "bone"
 		cosmetic_skeleton
 			//name="skeleton"
 			generic="skeleton"
-			adjective="very boney"
+			adjective="not as boney"
 			restricted=2
 			attack_verb = "bone"
 		shadow

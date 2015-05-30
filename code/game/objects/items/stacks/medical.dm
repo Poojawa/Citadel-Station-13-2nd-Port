@@ -85,7 +85,7 @@
 	singular_name = "bruise pack"
 	desc = "A theraputic gel pack and bandages designed to treat blunt-force trauma."
 	icon_state = "brutepack"
-	heal_brute = 40
+	heal_brute = 20
 	origin_tech = "biotech=1"
 
 /obj/item/stack/medical/gauze
@@ -114,5 +114,5 @@
 	gender = PLURAL
 	singular_name = "ointment"
 	icon_state = "ointment"
-	heal_burn = 40
+	heal_burn = 20
 	origin_tech = "biotech=1"
