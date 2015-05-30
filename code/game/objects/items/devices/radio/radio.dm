@@ -388,7 +388,8 @@
 			"verb_say" = M.verb_say, //the verb used when talking normally
 			"verb_ask" = M.verb_ask, //the verb used when asking
 			"verb_exclaim" = M.verb_exclaim, //the verb used when exclaiming
-			"verb_yell" = M.verb_yell //the verb used when yelling
+			"verb_yell" = M.verb_yell, //the verb used when yelling
+			"verb_whimsies" = M.verb_whimsies //the verb used when ~
 			)
 		signal.frequency = freq
 
@@ -438,7 +439,8 @@
 		"verb_say" = M.verb_say,
 		"verb_ask" = M.verb_ask,
 		"verb_exclaim" = M.verb_exclaim,
-		"verb_yell" = M.verb_yell
+		"verb_yell" = M.verb_yell,
+		"verb_whimsies" = M.verb_whimsies
 		)
 	signal.frequency = freqnum // Quick frequency set
 	for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
@@ -456,7 +458,7 @@
 		Broadcast_Message(M, voicemask,
 						  src, message, voice, jobname, real_name,
 						  filter_type, signal.data["compression"], list(position.z), freq, spans,
-						  verb_say, verb_ask, verb_exclaim, verb_yell)
+						  verb_say, verb_ask, verb_exclaim, verb_yell, verb_whimsies)
 
 /obj/item/device/radio/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans)
 	if(radio_freq)

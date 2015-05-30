@@ -285,6 +285,14 @@
 	sexes = 0
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/skeleton
 	specflags = list(NOBREATH,HEATRES,COLDRES,NOBLOOD,RADIMMUNE,VIRUSIMMUNE,HARDFEET)
+
+/datum/species/cosmetic_skeleton
+	name = "Spooky Scary Skeleton"
+	id = "skeleton"
+	say_mod = "rattles"
+	sexes = 0
+	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/skeleton
+
 /*
  ZOMBIES
 */
@@ -400,7 +408,3 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 		H.adjustFireLoss(-5)
 		H.reagents.remove_reagent(chem.id, REAGENTS_METABOLISM)
 		return 1
-
-
-
-

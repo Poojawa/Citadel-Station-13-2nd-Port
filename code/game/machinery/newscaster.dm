@@ -198,6 +198,7 @@ var/list/obj/machinery/newscaster/allCasters = list()
 	verb_say = "beeps"
 	verb_ask = "beeps"
 	verb_exclaim = "beeps"
+	verb_whimsies = "whimsies"
 	var/isbroken = 0
 	var/ispowered = 1
 	var/screen = 0

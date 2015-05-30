@@ -1,11 +1,11 @@
 /datum/round_event_control/brand_intelligence
 	name = "Brand Intelligence"
 	typepath = /datum/round_event/brand_intelligence
-	weight = 5
+	weight = 2
 	max_occurrences = 1
 
 /datum/round_event/brand_intelligence
-	announceWhen	= 21
+	announceWhen	= 3
 	endWhen			= 1000	//Ends when all vending machines are subverted anyway.
 
 	var/list/obj/machinery/vending/vendingMachines = list()

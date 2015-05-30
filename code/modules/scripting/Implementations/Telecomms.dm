@@ -104,6 +104,7 @@ var/list/allowed_custom_spans = list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS
 		interpreter.SetVar("$ask"    , 	signal.data["verb_ask"])
 		interpreter.SetVar("$yell"    , 	signal.data["verb_yell"])
 		interpreter.SetVar("$exclaim"    , 	signal.data["verb_exclaim"])
+		interpreter.SetVar("$whimsies"    , 	signal.data["verb_whimsies"])
 
 		//Current allowed span classes
 		interpreter.SetVar("$robot",	SPAN_ROBOT) //The font used by silicons!
@@ -241,6 +242,7 @@ var/list/allowed_custom_spans = list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS
 		signal.data["verb_ask"]		= interpreter.GetCleanVar("$ask")
 		signal.data["verb_yell"]	= interpreter.GetCleanVar("$yell")
 		signal.data["verb_exclaim"]	= interpreter.GetCleanVar("$exclaim")
+		signal.data["verb_whimsies"]	= interpreter.GetCleanVar("$whimsies")
 		var/list/setspans 			= interpreter.GetCleanVar("$filters") //Save the span vector/list to a holder list
 		setspans &= allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
 		signal.data["spans"]		= setspans //Apply it to the signal
@@ -298,7 +300,7 @@ datum/signal
 			lastsignalers.Add("[time] <B>:</B> [S.id] sent a signal command, which was triggered by NTSL.<B>:</B> [format_frequency(freq)]/[code]")
 
 
-	proc/tcombroadcast(var/message, var/freq, var/source, var/job, var/spans, var/say = "says", var/ask = "asks", var/yell = "yells", var/exclaim = "exclaims")
+	proc/tcombroadcast(var/message, var/freq, var/source, var/job, var/spans, var/say = "says", var/ask = "asks", var/whimsies = "whimsies" , var/yell = "yells", var/exclaim = "exclaims")
 
 		var/datum/signal/newsign = new
 		var/obj/machinery/telecomms/server/S = data["server"]
@@ -347,6 +349,7 @@ datum/signal
 		newsign.data["verb_ask"] = ask
 		newsign.data["verb_yell"]= yell
 		newsign.data["verb_exclaim"] = exclaim
+		newsign.data["verb_whimsies"] = whimsies
 		if(!isnum(freq))
 			freq = text2num(freq)
 		newsign.frequency = freq

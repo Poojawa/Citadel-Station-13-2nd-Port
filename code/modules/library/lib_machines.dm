@@ -165,6 +165,7 @@ var/global/list/datum/cachedbook/cachedbooks // List of our cached book datums
 	verb_say = "beeps"
 	verb_ask = "beeps"
 	verb_exclaim = "beeps"
+	verb_whimsies = "beeps"
 	var/buffer_book
 	var/buffer_mob
 	var/upload_category = "Fiction"

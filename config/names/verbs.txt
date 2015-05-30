@@ -616,6 +616,7 @@ whip
 whirl
 whisper
 whistle
+whimsies
 wink
 wipe
 wish
