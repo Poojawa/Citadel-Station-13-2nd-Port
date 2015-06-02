@@ -72,14 +72,16 @@
 
 
 	if (getBrainLoss() >= 60 && stat != DEAD)
-		if (prob(3))
-			switch(pick(1,2,3))
+		if (prob(5))
+			switch(pick(1,2,3,4))
 				if(1)
-					say(pick("IM A PONY NEEEEEEIIIIIIIIIGH", "without oxigen blob don't evoluate?", "CAPTAINS A COMDOM", "[pick("", "that faggot traitor")] [pick("joerge", "george", "gorge", "gdoruge")] [pick("mellens", "melons", "mwrlins")] is grifing me HAL;P!!!", "can u give me [pick("telikesis","halk","eppilapse")]?", "THe saiyans screwed", "Bi is THE BEST OF BOTH WORLDS>", "I WANNA PET TEH monkeyS", "stop grifing me!!!!", "SOTP IT#"))
+					say(pick("IM A PONY NEEEEEEIIIIIIIIIGH", "without oxigen blob don't evoluate?", "CAPTAINS A COMDOM", "[pick("", "that faggot traitor")] [pick("joerge", "george", "gorge", "gdoruge")] [pick("mellens", "melons", "mwrlins")] is grifing me HAL;P!!!", "can u give me [pick("telikesis","halk","eppilapse", "glowey skin", "eksray", "kamelien")]?", "THe saiyans screwed", "Bi is THE BEST OF BOTH WORLDS>", "I WANNA PET TEH monkeyS", "stop grifing me!!!!", "SOTP IT#"))
 				if(2)
-					say(pick("FUS RO DAH","fucking 4rries!", "stat me", ">my face", "roll it easy!", "waaaaaagh!!!", "red wonz go fasta", "FOR TEH EMPRAH", "lol2cat", "dem dwarfs man, dem dwarfs", "SPESS MAHREENS", "hwee did eet fhor khayosss", "lifelike texture ;_;", "luv can bloooom", "PACKETS!!!"))
+					say(pick("FUS RO DAH","fucking 4rries!", "stat me", ">my face", "roll it easy!", "waaaaaagh!!!", "red wonz go fasta", "FOR TEH EMPRAH", "lmao2cat", "dem dwarfs man, dem dwarfs", "SPESS MAHREENS", "hwee did eet fhor khayosss", "lifelike texture ;_;", "luv can bloooom", "PACKETS!!!", "port ba[pick("y", "i", "e")] med!!!!", "CEMISTRY SUKS!!!!!!!!", "youed call her a toeugh bithc", "git gud!!", "CHEMIT GIB HALNOM PLS", "PLASMA iS MENT 2 BE FREE", "LoL tROLED U", "SEC IS A REV, LINCH!!", "FUCK U IM WAY MORE ROBUST u bITCH!!1!!", "iS tHis bay?", "NO PRED CAN eVER CATCH MI", "SCIENCE GIB SHINK RAY PLS", "KILL PUNPUN 4 FUN xDD", "ooc wow rly?", "aI state dem1!", "SINGULO eNGINE 2 DANGER, SOLARS PLS!", "nerf blob!1", "iM NOT A FUWRRYY!!", "FOURTEEN INCHES SOFT"))
 				if(3)
-					emote("drool")
+					say(pick("GEY AWAY FROM ME U GREIFING PRICK!!!!", ";HELP SHITECIRTY MURDERIN  MEE!!!", ";CAL; tEH SHUTTLE!!!!!", ";wearnig siNGUARLTY IS .... FIne xDDDDDDDDD", ";AI laW 22 Opin airlok", ";this SI mY stATIon......", "who the HELL do u thenk u r?!!!!", "geT THE FUCK OUTTTT", ";;CRAGING THIS STTAYTION WITH NIO SURVIVROS", "i shure hop dere are no PRED arund!!!!", "i play [pick("heds", "ceptin", "hop")] to only ORDER not DO", "erp?", "i want to digest u!!!", "CRAGO ORDER [pick("GUNS", "HATS", "GLOWY CYSTAL")] PLS", "NOM!1!", "iF it COMPILES it werks!", "LYNCH RObOTIKS NOT GIBING ME MECH WTF?/?", "GWURGLE!!", "ahelp kan i b ninja?", "balid saled!", "LINCH VIRO", "VIRO GIB SuPR VIrUS!!", "Ai plai vxtest2!"))
+				if(4)
+					say(pick(";taitor trie to make meh malk/?!1!1", ";ENGIE TATOR HE SET UP SINGULO!!11", "WHEN NAGAS ADdED?/?", "SINDYIE ON SAtIONS GiB gUNS PLISE", "CcLOWN IV SlIPPING MI, SEc t BAR@", "ahelp iT's RP vALiDZ!", "HYDROBONIX PLS WEED PLIESe PLIsE BLAzE IT1!!!", "HALP GOLIATH TENETCAL RAPPPP!!!!111", "DudSE it'S 4:20 LmAO BLAZZ IT xDDDDD", "DRONE TOOK METAL kIlL It!1!"))
 
 
 /mob/living/carbon/human/handle_mutations_and_radiation()

@@ -824,6 +824,14 @@
 				if(M.dna)
 					damage += M.dna.species.punchmod
 
+				if(H.stat==DEAD && damage >= 9)
+					if(H.stomach_contents.len)
+						for(var/mob/A in H.stomach_contents)
+							A.loc=H.loc
+						for(var/obj/A in H.stomach_contents)
+							A.loc=H.loc
+						H.visible_message("<span class='warning'>[H] spews!</span>")
+
 				if(!damage)
 					if(M.dna)
 						playsound(H.loc, M.dna.species.miss_sound, 25, 1, -1)
@@ -854,6 +862,7 @@
 					H.forcesay(hit_appends)
 				else if(H.lying)
 					H.forcesay(hit_appends)
+
 		if("disarm")
 			if(attacker_style && attacker_style.disarm_act(M,H))
 				return 1

@@ -41,6 +41,7 @@
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
 	icon_state = "stethoscope"
 	item_color = "stethoscope"
+	var/hear_perfect=0
 
 /obj/item/clothing/tie/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
 	if(ishuman(M) && isliving(user))
@@ -68,12 +69,68 @@
 						if("eyes","mouth")
 							sound_strength = "cannot hear"
 							sound = "anything"
+						if("head")
+							if(M.ckey == "crystal24" || M.ckey == "gc1520" ) //All in good fun.
+								sound_strength = "cannot hear"
+								sound = "anything"
 						else
 							sound_strength = "hear a weak"
+
+				switch(body_part)
+					if("right leg","right foot","left leg","left foot")
+						body_part="leg"
+					if("right arm","right hand","left arm","left hand")
+						body_part="arm"
+				var/list/peeps_list=list()
+				var/junk_heard=0
+				for(var/datum/vore_organ/VD in M.vore_organ_list())
+					if(VD.assoc_loc==body_part)
+
+						for(var/mob/living/L in VD.contents)
+							peeps_list.Add(L)
+						if(!junk_heard)
+							for(var/obj/O in VD.contents)
+								junk_heard=1
+								break
+
+				if(peeps_list.len)
+					sound_strength="can hear"
+					sound=""
+					var/people_heard=0
+
+					if(hear_perfect)
+						for(var/mob/living/L in peeps_list)
+							if(sound!="")
+								sound+=", "
+							sound+=L.real_name
+							for(var/mob/living/LL in L.stomach_contents)
+								people_heard++
+						if(people_heard)
+							if(people_heard==1)
+								sound+=" and one other person"
+							else
+								sound+=" and [people_heard] other people"
+
+					else
+						people_heard=peeps_list.len
+						if(people_heard)//failsafe
+							if(people_heard==1)
+								sound="someone inside"
+							else
+								sound="[people_heard] people inside"
+				else if(junk_heard)
+					sound_strength="can hear"
+					sound="rattling"
 
 				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound].")
 				return
 	return ..(M,user)
+
+/obj/item/clothing/tie/stethoscope/advanced
+	name = "advanced stethoscope"
+	desc = "An advanced medical apparatus for listening to the sounds of the human body in the human body. It also makes you look like you know what you're doing."
+	hear_perfect=1
+	color="#ff9999"
 
 //////////
 //Medals//
