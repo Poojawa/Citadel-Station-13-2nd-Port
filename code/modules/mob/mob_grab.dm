@@ -219,5 +219,8 @@
 			var/mob/living/predator=M
 			predator.vore_initiate(affecting,assailant)
 
+/obj/item/weapon/grab/dropped()
+	qdel(src)
+
 #undef UPGRADE_COOLDOWN
 #undef UPGRADE_KILL_TIMER
