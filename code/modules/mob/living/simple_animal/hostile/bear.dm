@@ -7,8 +7,8 @@
 	icon_dead = "bear_dead"
 	icon_gib = "bear_gib"
 	speak = list("RAWR!","Rawr!","GRR!","Growl!")
-	speak_emote = list("growls", "roars")
-	emote_hear = list("rawrs","grumbles","grawls")
+	speak_emote = list("growls", "ROARS")
+	emote_hear = list("RAWRS","grumbles","grawls")
 	emote_see = list("stares ferociously", "stomps")
 	speak_chance = 1
 	turns_per_move = 5
@@ -16,12 +16,12 @@
 	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/meat/slab/bear = 5)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "hits"
-	maxHealth = 60
-	health = 60
+	response_harm   = "flails at"
+	maxHealth = 65
+	health = 65
 
 	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage_upper = 25
 	attacktext = "claws"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	friendly = "bear hugs"
