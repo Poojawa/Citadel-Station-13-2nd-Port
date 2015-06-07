@@ -7,17 +7,17 @@
 	icon_gib = "carp_gib"
 	speak_chance = 0
 	turns_per_move = 5
-	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/carpmeat = 2)
+	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/carpmeat = 3)
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm = "hits"
+	response_harm = "flails at"
 	speed = 0
-	maxHealth = 25
-	health = 25
+	maxHealth = 30
+	health = 30
 
 	harm_intent_damage = 8
-	melee_damage_lower = 15
-	melee_damage_upper = 15
+	melee_damage_lower = 10
+	melee_damage_upper = 10
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("gnashes")
@@ -33,10 +33,6 @@
 /mob/living/simple_animal/hostile/carp/Process_Spacemove(var/movement_dir = 0)
 	return 1	//No drifting in space for space carp!	//original comments do not steal
 
-/mob/living/simple_animal/hostile/carp/FindTarget()
-	. = ..()
-	if(.)
-		emote("me", 1, "gnashes at [.]!")
 
 /mob/living/simple_animal/hostile/carp/AttackingTarget()
 	..()
@@ -63,10 +59,11 @@
 	icon_living = "megacarp"
 	icon_dead = "megacarp_dead"
 	icon_gib = "megacarp_gib"
-	maxHealth = 65
-	health = 65
+	maxHealth = 75
+	health = 75
 	pixel_x = -16
 	mob_size = MOB_SIZE_LARGE
+	speak_emote = list("GNASHES ANGRILY")
 
-	melee_damage_lower = 20
-	melee_damage_upper = 20
+	melee_damage_lower = 16
+	melee_damage_upper = 16

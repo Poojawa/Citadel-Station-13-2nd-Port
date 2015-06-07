@@ -7,15 +7,15 @@
 	icon_gib = "syndicate_gib"
 	speak_chance = 0
 	turns_per_move = 5
-	response_help = "pokes"
+	response_help = "hugs"
 	response_disarm = "shoves"
 	response_harm = "hits"
 	speed = 0
 	maxHealth = 100
 	health = 100
 	harm_intent_damage = 5
-	melee_damage_lower = 15
-	melee_damage_upper = 15
+	melee_damage_lower = 20
+	melee_damage_upper = 20
 	attacktext = "punches"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	a_intent = "harm"
@@ -43,6 +43,7 @@
 	if(prob(50) && ispath(weapon1,/obj/item/weapon/gun/projectile/revolver/mateba)) //to preserve varedits
 		weapon1 = /obj/item/weapon/gun/projectile/shotgun/boltaction
 		casingtype = /obj/item/ammo_casing/a762
+	..()
 
 /mob/living/simple_animal/hostile/russian/death(gibbed)
 	..(1)
