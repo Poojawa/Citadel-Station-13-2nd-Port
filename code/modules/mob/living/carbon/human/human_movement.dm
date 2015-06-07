@@ -29,6 +29,11 @@
 		return 0
 	.=..()
 
+/mob/living/carbon/human/experience_pressure_difference()
+	if(shoes.flags&NOSLIP)
+		return 0
+	. = ..()
+
 /mob/living/carbon/human/mob_has_gravity()
 	. = ..()
 	if(!.)
