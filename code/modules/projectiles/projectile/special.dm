@@ -205,7 +205,7 @@ obj/item/projectile/kinetic/New()
 	name = "plasma blast"
 	icon_state = "plasmacutter"
 	damage_type = BRUTE
-	damage = 5
+	damage = 7
 	range = 1
 
 obj/item/projectile/plasma/New()
@@ -228,6 +228,7 @@ obj/item/projectile/plasma/New()
 
 /obj/item/projectile/plasma/adv
 	range = 2
+	damage = 8
 
 /obj/item/projectile/plasma/adv/mech
 	damage = 10

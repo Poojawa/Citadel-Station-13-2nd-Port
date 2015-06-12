@@ -53,8 +53,8 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		// 3/7/14 will calculate to 80 + 35
 
 		var/far_dist = 0
-		far_dist += heavy_impact_range * 5
-		far_dist += devastation_range * 20
+		far_dist += heavy_impact_range * 7 // explosionfar.ogg is a pretty nice thing to hear if shit goes down
+		far_dist += devastation_range * 25
 
 		if(!silent)
 			var/frequency = get_rand_frequency()
