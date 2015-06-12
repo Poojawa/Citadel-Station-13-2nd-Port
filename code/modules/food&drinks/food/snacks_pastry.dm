@@ -68,6 +68,13 @@
 	icon_state = "jdonut1"
 	extra_reagent = "cherryjelly"
 
+/obj/item/weapon/reagent_containers/food/snacks/donut/premiumdonut
+	name = "frosted jelly donut"
+	desc = "Even Security gets to be a sprinkled snowflake."
+	icon_state = "jdonut2"
+	list_reagents = list("sprinkles" = 5, "nutriment" = 3)
+	filling_color = "#FF69B4"
+
 ////////////////////////////////////////////MUFFINS////////////////////////////////////////////
 
 /obj/item/weapon/reagent_containers/food/snacks/muffin
