@@ -6,7 +6,7 @@
 	config_tag = "abduction"
 	antag_flag = BE_ABDUCTOR
 	recommended_enemies = 2
-	required_players = 15
+	required_players = 8
 	var/max_teams = 4
 	var/teams = 1
 	var/list/datum/mind/scientists = list()

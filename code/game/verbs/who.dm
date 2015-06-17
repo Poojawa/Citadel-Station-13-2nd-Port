@@ -10,7 +10,12 @@
 	if(holder)
 		if(check_rights(R_ADMIN,0))//If they have +ADMIN, show hidden admins, player IC names and IC status
 			for(var/client/C in clients)
-				var/entry = "\t[C.key]"
+				var/entry = "\t"
+				if(is_whitelisted(C.key))
+					entry += "<font color='navy'>[C.key]</font>"
+				else
+					entry+="[C.key]"
+
 				if(C.holder && C.holder.fakekey)
 					entry += " <i>(as [C.holder.fakekey])</i>"
 				entry += " - Playing as [C.mob.real_name]"

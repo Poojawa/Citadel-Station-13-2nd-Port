@@ -10,9 +10,9 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 	antag_flag = BE_CHANGELING
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
-	required_players = 15
+	required_players = 5
 	required_enemies = 1
-	recommended_enemies = 4
+	recommended_enemies = 2
 	reroll_friendly = 1
 
 
@@ -98,7 +98,7 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 	absorb_objective.gen_amount_goal(6, 8)
 	changeling.objectives += absorb_objective
 
-	if(prob(60))
+	if(prob(90))
 		var/datum/objective/steal/steal_objective = new
 		steal_objective.owner = changeling
 		steal_objective.find_target()
@@ -117,7 +117,7 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 		destroy_objective.find_target()
 		changeling.objectives += destroy_objective
 	else
-		if(prob(70))
+		if(prob(5))
 			var/datum/objective/assassinate/kill_objective = new
 			kill_objective.owner = changeling
 			kill_objective.find_target()

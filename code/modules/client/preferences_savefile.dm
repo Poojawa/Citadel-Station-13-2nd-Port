@@ -164,16 +164,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return 0
 
 	//Species
-	var/species_name
-	S["species"]			>> species_name
-	if(config.mutant_races && species_name && (species_name in roundstart_species))
-		var/newtype = roundstart_species[species_name]
-		pref_species = new newtype()
-	else
-		pref_species = new /datum/species/human()
-
-	if(!S["mutant_color"] || S["mutant_color"] == "#000")
-		S["mutant_color"]	<< "#FFF"
+	if(!S["species"] || !config.mutant_races)
+		S["species"]		<< new /datum/species/human()
+	//if(!S["mutant_color"] || S["mutant_color"] == "#000")
+	//	S["mutant_color"]	<< "#FFF"
 
 	//Character
 	S["OOC_Notes"]			>> metadata
@@ -199,6 +193,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["cyborg_name"]		>> custom_names["cyborg"]
 	S["religion_name"]		>> custom_names["religion"]
 	S["deity_name"]			>> custom_names["deity"]
+	S["species"]			>> pref_species
 
 	//Customs
 	S["mutant_tail"]		>> mutant_tail
@@ -228,7 +223,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["job_engsec_low"]		>> job_engsec_low
 
 	//Flavour Text
-	S["flavor_texts_general"]	<< flavor_texts["general"]
+	//S["flavor_texts_general"]	<< flavor_texts["general"]
 
 	return 1
 
@@ -321,7 +316,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["undershirt"]			<< undershirt
 	S["socks"]				<< socks
 	S["backbag"]			<< backbag
-	S["species"]			<< pref_species.name
+	S["species"]			<< pref_species
 	//S["mutant_color"]		<< mutant_color
 	S["clown_name"]			<< custom_names["clown"]
 	S["mime_name"]			<< custom_names["mime"]
@@ -342,6 +337,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["p_cock"]				<< p_cock
 	S["p_vagina"]			<< p_vagina
 
+
 	//Jobs
 	S["userandomjob"]		<< userandomjob
 	S["job_civilian_high"]	<< job_civilian_high
@@ -355,15 +351,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["job_engsec_low"]		<< job_engsec_low
 
 	//Flavour Text
-	S["flavor_texts_general"]	<< flavor_texts["general"]
-	S["flavor_texts_head"]		<< flavor_texts["head"]
-	S["flavor_texts_face"]		<< flavor_texts["face"]
-	S["flavor_texts_eyes"]		<< flavor_texts["eyes"]
-	S["flavor_texts_torso"]		<< flavor_texts["torso"]
-	S["flavor_texts_arms"]		<< flavor_texts["arms"]
-	S["flavor_texts_hands"]		<< flavor_texts["hands"]
-	S["flavor_texts_legs"]		<< flavor_texts["legs"]
-	S["flavor_texts_feet"]		<< flavor_texts["feet"]
+	//S["flavor_texts_general"]	<< flavor_texts["general"]
 
 	return 1
 
