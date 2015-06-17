@@ -344,6 +344,9 @@
 				else
 					diary << "Unknown setting in configuration: '[name]'"
 
+		else if(type == "whitelist")
+			whitelist_keys.Add(name)
+
 		else if(type == "game_options")
 			switch(name)
 				if("health_threshold_crit")

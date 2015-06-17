@@ -32,6 +32,11 @@ var/jobban_keylist[0]		//to store the keys & ranks
 					if(text)
 						return text
 				return "Reason Unspecified"
+		if (guest_jobbans(rank))
+			if(config.guest_jobban && IsGuestKey(M.ckey))
+				return "Reason: Guest Ban"
+			if(config.narkyjoblist && !is_whitelisted(M.ckey))
+				return "Reason: New Player Ban"
 	return 0
 
 /*

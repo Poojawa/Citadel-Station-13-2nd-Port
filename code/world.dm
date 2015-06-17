@@ -178,6 +178,7 @@
 	config = new /datum/configuration()
 	config.load("config/config.txt")
 	config.load("config/game_options.txt","game_options")
+	config.load("config/whitelist.txt","whitelist")
 	config.loadsql("config/dbconfig.txt")
 	// apply some settings from config..
 	abandon_allowed = config.respawn

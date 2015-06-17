@@ -511,7 +511,7 @@ var/list/slot_equipment_priority = list( \
 	if (popup)
 		memory()
 
-
+/*
 /mob/proc/update_flavor_text()
 	set src in usr
 	if(usr != src)
@@ -536,6 +536,7 @@ var/list/slot_equipment_priority = list( \
 			return "\blue [msg]"
 		else
 			return "\blue [copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+*/
 
 /mob/verb/abandon_mob()
 	set name = "Respawn"
@@ -708,7 +709,7 @@ var/list/slot_equipment_priority = list( \
 	if(href_list["flavor_change"])
 		update_flavor_text()*/
 //	..()
-	return
+//	return
 
 	if(href_list["refresh"])
 		if(machine && in_range(src, usr))

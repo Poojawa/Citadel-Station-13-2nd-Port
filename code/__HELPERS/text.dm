@@ -44,7 +44,7 @@
 			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+1)
 			index = findtext(t, char, index+1)
 	return t
-
+/*
 //Used in preferences' SetFlavorText and human's set_flavor verb
 //Previews a string of len or less length
 proc/TextPreview(var/string,var/len=40)
@@ -54,7 +54,7 @@ proc/TextPreview(var/string,var/len=40)
 		else
 			return string
 	else
-		return "[copytext(string, 1, 37)]..."
+		return "[copytext(string, 1, 37)]..."*/
 
 //Runs byond's sanitization proc along-side sanitize_simple
 /proc/sanitize(var/t,var/list/repl_chars = null)
