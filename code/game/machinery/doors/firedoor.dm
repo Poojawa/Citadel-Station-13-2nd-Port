@@ -13,6 +13,7 @@
 	var/blocked = 0
 	var/nextstate = null
 	sub_door = 1
+	layer = 2.6
 	closingLayer = 3.11
 
 /obj/machinery/door/firedoor/Bumped(atom/AM)

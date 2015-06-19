@@ -12,6 +12,7 @@
 	icon_state = "open"
 	density = 0
 	opacity = 0
+	layer = 2.6
 
 /obj/machinery/door/poddoor/ert
 	desc = "A heavy duty blast door that only opens for dire emergencies."
