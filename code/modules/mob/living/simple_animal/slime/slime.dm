@@ -231,7 +231,7 @@
 /mob/living/simple_animal/slime/attack_hand(mob/living/carbon/human/M as mob)
 	if(Victim)
 		if(Victim == M)
-			if(prob(60))
+			if(prob(30))
 				visible_message("<span class='warning'>[M] attempts to wrestle \the [name] off!</span>")
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 

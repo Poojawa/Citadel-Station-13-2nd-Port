@@ -7,8 +7,8 @@
 	speak_chance = 0
 	turns_per_move = 5
 	response_help = "passes through"
-	response_disarm = "shoves"
-	response_harm = "hits"
+	response_disarm = "shoves through"
+	response_harm = "punches through"
 	speed = 0
 	maxHealth = 80
 	health = 80

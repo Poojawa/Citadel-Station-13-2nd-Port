@@ -448,22 +448,26 @@
 				phrases += "Unn..."
 			if (mood == ":3")
 				phrases += "Purr..."
+				phrases += "Nya..."
 			if (attacked)
 				phrases += "Grrr..."
+				phrases += "Ow..."
 			if (bodytemperature < T0C)
 				phrases += "Cold..."
 			if (bodytemperature < T0C - 30)
 				phrases += "So... cold..."
 				phrases += "Very... cold..."
 			if (bodytemperature < T0C - 50)
-				phrases += "..."
+				phrases += "C..."
 				phrases += "C... c..."
 			if (Victim)
 				phrases += "Nom..."
 				phrases += "Tasty..."
-			if (powerlevel > 3) phrases += "Bzzz..."
-			if (powerlevel > 5) phrases += "Zap..."
-			if (powerlevel > 8) phrases += "Zap... Bzz..."
+			if (powerlevel >= 1) phrases += "Bz..."
+			if (powerlevel >= 2) phrases += "Bzzz..."
+			if (powerlevel >= 4) phrases += "Zap..."
+			if (powerlevel >= 6) phrases += "Zap... Bzz..."
+			if (powerlevel >= 10) phrases += "Zap.. Zap...!"
 			if (mood == "sad") phrases += "Bored..."
 			if (slimes_near) phrases += "Brother..."
 			if (slimes_near > 1) phrases += "Brothers..."

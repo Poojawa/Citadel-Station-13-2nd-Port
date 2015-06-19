@@ -8,19 +8,19 @@
 	icon_gib = "pine_1"
 	speak_chance = 0
 	turns_per_move = 5
-	response_help = "brushes"
+	response_help = "hugs" //fucking treehuggers
 	response_disarm = "pushes"
 	response_harm = "hits"
 	speed = 1
-	maxHealth = 250
-	health = 250
+	maxHealth = 175
+	health = 175
 	mob_size = MOB_SIZE_LARGE
 
 	pixel_x = -16
 
 	harm_intent_damage = 5
-	melee_damage_lower = 8
-	melee_damage_upper = 12
+	melee_damage_lower = 10
+	melee_damage_upper = 15
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("pines")
@@ -32,10 +32,10 @@
 	faction = list("hostile")
 	var/drop_type = /obj/item/stack/sheet/mineral/wood
 
-/mob/living/simple_animal/hostile/tree/FindTarget()
+/* /mob/living/simple_animal/hostile/tree/FindTarget()
 	. = ..()
 	if(.)
-		emote("me", 1, "growls at [.].")
+		emote("me", 1, "growls at [.].") people like to spams hundreds of these mobs */
 
 /mob/living/simple_animal/hostile/tree/AttackingTarget()
 	..()
@@ -62,4 +62,5 @@
 	icon_gib = "festivus_pole"
 	drop_type = /obj/item/stack/rods
 	speak_emote = list("polls")
-
+	maxHealth = 250
+	health = 250

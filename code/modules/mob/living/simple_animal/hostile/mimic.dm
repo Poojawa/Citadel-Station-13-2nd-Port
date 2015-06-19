@@ -11,14 +11,14 @@
 
 	response_help = "touches"
 	response_disarm = "pushes"
-	response_harm = "hits"
+	response_harm = "kicks"
 	speed = 0
 	maxHealth = 250
 	health = 250
 
 	harm_intent_damage = 5
-	melee_damage_lower = 8
-	melee_damage_upper = 12
+	melee_damage_lower = 17
+	melee_damage_upper = 20
 	attacktext = "attacks"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	var/Attackemote = "growls at"
