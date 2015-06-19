@@ -129,6 +129,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 0
 	melee_damage_upper = 0
+	response_harm = "tears up"
 	attacktext = "barrels into"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	a_intent = "help"
@@ -307,6 +308,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 2
 	melee_damage_upper = 2
+	response_harm = "tears apart"
 	attacktext = "slashes"
 	speak_emote = list("telepathically cries")
 	attack_sound = 'sound/weapons/pierce.ogg'
@@ -343,9 +345,10 @@
 	speed = 3
 	maxHealth = 300
 	health = 300
-	harm_intent_damage = 0
+	harm_intent_damage = 1
 	melee_damage_lower = 25
 	melee_damage_upper = 25
+	response_harm = "hopelessly punches"
 	attacktext = "pulverizes"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	throw_message = "does nothing to the rocky hide of the"

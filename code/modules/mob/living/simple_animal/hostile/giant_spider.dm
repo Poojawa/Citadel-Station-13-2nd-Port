@@ -35,7 +35,7 @@
 	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/meat/slab/spider = 2, /obj/item/weapon/reagent_containers/food/snacks/spiderleg = 8)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "hits"
+	response_harm   = "flails at"
 	maxHealth = 200
 	health = 200
 	melee_damage_lower = 15

@@ -20,9 +20,9 @@
 	attack_same = 1
 	attacktext = "kicks"
 	attack_sound = 'sound/weapons/punch1.ogg'
-	health = 40
-	melee_damage_lower = 1
-	melee_damage_upper = 2
+	health = 55
+	melee_damage_lower = 7
+	melee_damage_upper = 10
 	environment_smash = 0
 	stop_automated_movement_when_pulled = 1
 	var/datum/reagents/udder = null
@@ -147,7 +147,7 @@
 
 /mob/living/simple_animal/chick
 	name = "\improper chick"
-	desc = "Adorable! They make such a racket though."
+	desc = "Adorable! They look quite fragile."
 	icon_state = "chick"
 	icon_living = "chick"
 	icon_dead = "chick_dead"
@@ -157,7 +157,7 @@
 	emote_hear = list("cheeps")
 	emote_see = list("pecks at the ground","flaps its tiny wings")
 	density = 0
-	speak_chance = 2
+	speak_chance = 1
 	turns_per_move = 2
 	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/meat/slab = 1)
 	response_help  = "pets"
@@ -199,7 +199,7 @@ var/global/chicken_count = 0
 	emote_hear = list("clucks")
 	emote_see = list("pecks at the ground","flaps its wings viciously")
 	density = 0
-	speak_chance = 2
+	speak_chance = 1
 	turns_per_move = 3
 	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/meat/slab = 2)
 	var/egg_type = /obj/item/weapon/reagent_containers/food/snacks/egg
@@ -207,8 +207,11 @@ var/global/chicken_count = 0
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	attacktext = "kicks"
-	health = 10
+	attacktext = "pecks"
+	health = 15
+	attack_sound = 'sound/weapons/bite.ogg'
+	melee_damage_lower = 5
+	melee_damage_upper = 7
 	ventcrawler = 2
 	var/eggsleft = 0
 	var/eggsFertile = TRUE

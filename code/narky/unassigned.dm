@@ -376,7 +376,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 		if(prey.vore_last_relay>SSair.times_fired-2)return
 		prey.vore_last_relay=SSair.times_fired
 		if(prey.a_intent=="help"&&!exterior)
-			owner.visible_message("<span class='notice'>Something shifts around inside [owner].</span>")
+			owner.visible_message("<span class='notice'>Something shifts around within [owner].</span>")
 		else
 			if(exterior||escape||owner.stat==2)
 				release(FLAVOUR_ESCAPE,prey)

@@ -4,10 +4,10 @@
 	icon_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
-	speak = list("Squeek!","SQUEEK!","Squeek?")
+/*	speak = list("Squeek!","SQUEEK!","Squeek?")
 	speak_emote = list("squeeks")
 	emote_hear = list("squeeks")
-	emote_see = list("runs in a circle", "shakes")
+	emote_see = list("runs in a circle", "shakes") emotes and speaks spam makes admins mad :^( */
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
@@ -76,7 +76,7 @@
 	desc = "Jerry the cat is not amused."
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "splats"
+	response_harm   = "splats horrificly"
 
 /obj/item/trash/deadmouse
 	name = "dead mouse"

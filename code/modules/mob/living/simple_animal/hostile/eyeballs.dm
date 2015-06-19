@@ -8,12 +8,12 @@
 	icon_gib = ""
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm = "hits"
+	response_harm = "fingerstabs"
 	maxHealth = 45
 	health = 45
 	speak_emote = list("telepathically cries")
 
-	harm_intent_damage = 15
+	harm_intent_damage = 17
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	attacktext = "blinks at"
