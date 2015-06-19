@@ -348,7 +348,7 @@
 	harm_intent_damage = 1
 	melee_damage_lower = 25
 	melee_damage_upper = 25
-	response_harm = "punches hopelessly"
+	response_harm = "hopelessly punches"
 	attacktext = "pulverizes"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	throw_message = "does nothing to the rocky hide of the"
