@@ -57,7 +57,7 @@
 	else
 		return pressure
 
-	if(istype(loc, /mob/living/carbon/human)) return ONE_ATMOSPHERE
+	if(istype(loc, /mob/living/carbon/human)) return ONE_ATMOSPHERE //This is the string for prey not dying horribly in space/fire
 
 
 /mob/living/carbon/human/handle_disabilities()
