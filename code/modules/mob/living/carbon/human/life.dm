@@ -57,6 +57,8 @@
 	else
 		return pressure
 
+	if(istype(loc, /mob/living/carbon/human)) return ONE_ATMOSPHERE
+
 
 /mob/living/carbon/human/handle_disabilities()
 	..()
@@ -79,7 +81,7 @@
 				if(2)
 					say(pick("FUS RO DAH","fucking 4rries!", "stat me", ">my face", "roll it easy!", "waaaaaagh!!!", "red wonz go fasta", "FOR TEH EMPRAH", "lmao2cat", "dem dwarfs man, dem dwarfs", "SPESS MAHREENS", "hwee did eet fhor khayosss", "lifelike texture ;_;", "luv can bloooom", "PACKETS!!!", "port ba[pick("y", "i", "e")] med!!!!", "CEMISTRY SUKS!!!!!!!!", "youed call her a toeugh bithc", "git gud!!", "CHEMIT GIB HALNOM PLS", "PLASMA iS MENT 2 BE FREE", "LoL tROLED U", "SEC IS A REV, LINCH!!", "FUCK U IM WAY MORE ROBUST u bITCH!!1!!", "iS tHis bay?", "NO PRED CAN eVER CATCH MI", "SCIENCE GIB SHINK RAY PLS", "KILL PUNPUN 4 FUN xDD", "ooc wow rly?", "aI state dem1!", "SINGULO eNGINE 2 DANGER, SOLARS PLS!", "nerf blob!1", "iM NOT A FUWRRYY!!", "FOURTEEN INCHES SOFT"))
 				if(3)
-					say(pick("GEY AWAY FROM ME U GREIFING PRICK!!!!", ";HELP SHITECIRTY MURDERIN  MEE!!!", ";CAL; tEH SHUTTLE!!!!!", ";wearnig siNGUARLTY IS .... FIne xDDDDDDDDD", ";AI laW 22 Opin airlok", ";this SI mY stATIon......", "who the HELL do u thenk u r?!!!!", "geT THE FUCK OUTTTT", ";;CRAGING THIS STTAYTION WITH NIO SURVIVROS", "i shure hop dere are no PRED arund!!!!", "i play [pick("heds", "ceptin", "hop")] to only ORDER not DO", "erp?", "i want to digest u!!!", "CRAGO ORDER [pick("GUNS", "HATS", "GLOWY CYSTAL")] PLS", "NOM!1!", "iF it COMPILES it werks!", "LYNCH RObOTIKS NOT GIBING ME MECH WTF?/?", "GWURGLE!!", "ahelp kan i b ninja?", "balid saled!", "LINCH VIRO", "VIRO GIB SuPR VIrUS!!", "Ai plai vxtest2!"))
+					say(pick("GEY AWAY FROM ME U GREIFING PRICK!!!!", ";HELP SHITECIRTY MURDERIN  MEE!!!", ";CAL; tEH SHUTTLE!!!!!", ";wearnig siNGUARLTY IS .... FIne xDDDDDDDDD", ";AI laW 22 Opin airlok", ";this SI mY stATIon......", "who the HELL do u thenk u r?!!!!", "geT THE FUCK OUTTTT", ";;CRAGING THIS STTAYTION WITH NIO SURVIVROS", "i shure hop dere are no PRED arund!!!!", "i play [pick("heds", "ceptin", "hop")] to only ORDER not DO", "erp?", "i want to digest u!!!", "CRAGO ORDER [pick("GUNS", "HATS", "GLOWY CYSTAL")] PLS", "NOM!1!", "iF it COMPILES it werks!", "LYNCH RObOTIKS NOT GIBING ME MECH WTF?/?", "GWURGLE!!", "ahelp kan i b [pick("ert", "shadowlig", "ninja", "admen")]", "balid saled!", "LINCH VIRO", "VIRO GIB SuPR VIrUS!!", "Ai plai vxtest2!"))
 				if(4)
 					say(pick(";taitor trie to make meh malk/?!1!1", ";ENGIE TATOR HE SET UP SINGULO!!11", "WHEN NAGAS ADdED?/?", "SINDYIE ON SAtIONS GiB gUNS PLISE", "CcLOWN IV SlIPPING MI, SEc t BAR@", "ahelp iT's RP vALiDZ!", "HYDROBONIX PLS WEED PLIESe PLIsE BLAzE IT1!!!", "HALP GOLIATH TENETCAL RAPPPP!!!!111", "DudSE it'S 4:20 LmAO BLAZZ IT xDDDDD", "DRONE TOOK METAL kIlL It!1!"))
 
@@ -301,6 +303,15 @@
 
 				// make it so you can only puke so fast
 				lastpuke = 0
+
+/mob/living/carbon/human/handle_stomach()
+	spawn(0)
+		for(var/mob/living/M in stomach_contents)
+			if(M.loc != src)
+				stomach_contents.Remove(M)
+				continue
+		for(var/datum/vore_organ/organ in src.vore_organ_list())
+			organ.digest()
 
 
 /mob/living/carbon/human/handle_changeling()

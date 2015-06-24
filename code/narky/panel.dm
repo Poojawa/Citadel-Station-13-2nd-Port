@@ -13,12 +13,13 @@ obj/vore_preferences
 	if(!target) return
 	for(var/obj/vore_preferences/VP in world)
 		if(VP!=src&&VP.target==target)
-			if(target.ckey=="jayehh")
+			if(target.ckey=="jayehh"|| "poojawa"|| "nebulacallisto"|| "leonleonardo"|| "brimcon"|| "cyrema"|| "mrsebbi"|| "subtumaka")
 				target << "<B>DEBUG:</B> Deleted an old vore panel with a tab of [VP.current_tab]."
-			VP.loop=0
+					//VP.loop=0
 	return
 
 /obj/vore_preferences
+
 	proc/GetOrgan(var/organ)
 		switch(organ)
 			if("cock")
@@ -203,51 +204,51 @@ obj/vore_preferences
 				if(!container)
 					dat += "You are not currently inside someone."
 				else if(istype(container,/datum/vore_organ/stomach))
-					dat += "You are in [container.owner]'s stomach. "
+					dat += "You are in [container.owner]'s stomach. It is soft, wet, and moving.The walls gently squeeze around you from all sides as their heartbeat and breathing echo in your ears. The gurgles of their digestive system rumble all around you, but you're safe for now."
 					if(container.digestion_factor==VORE_DIGESTION_SPEED_SLOW)
-						dat += "You feel a slight, burning tingle on your skin. "
+						dat += "You feel a slight, burning tingle on your skin.The walls work at kneading over your form to soften you up. You're being digested! "
 					else if(container.digestion_factor)
-						dat += "Your body is quickly digesting. "
+						dat += "Your body is quickly digesting and the air is getting more and more thin after that belch! You won't last long! "
 					if(container.has_people()>1)
 						dat += "You can feel [container.has_people()-1] other [container.has_people()>2 ? "people" : "person"] in the stomach. "
 				else if(istype(container,/datum/vore_organ/cock)||istype(container,/datum/vore_organ/balls))
 					dat += "You are in [container.owner]'s [istype(container,/datum/vore_organ/cock) ? "cock" : "balls"]. "
 					if(container.digestion_factor==VORE_DIGESTION_SPEED_SLOW)
-						dat += "You feel a slight, burning tingle on your skin. "
+						dat += "You feel a slight, burning tingle on your skin. You're being melted! "
 					else if(container.digestion_factor)
-						dat += "Your body is quickly turning into [container.owner] [pick("spooge","cum","semen","batter","seed")]. "
+						dat += "Your body is quickly turning into [container.owner] [pick("spooge","cum","semen","batter","seed")] and the air is scarce. You won't last long! "
 					if(container.has_people()>1)
-						dat += "You can feel [container.has_people()-1] other [container.has_people()>2 ? "people" : "person"] in your cum-drenched prison. "
+						dat += "You can feel [container.has_people()-1] other [container.has_people()>2 ? "people" : "person"] in your cum-drenched and musky prison. Their forms press up close to your own. "
 					if(container.digestion_count)
-						dat += "It seems the cum was once people. "
+						dat += "It seems the cum was once a person or thing... or maybe even multiple? "
 				else if(istype(container,/datum/vore_organ/womb))
-					dat += "You are in [container.owner]'s womb. "
+					dat += "You are in [container.owner]'s womb. The smooth walls press over you, suspending you in a feeling of almost zero gravity. Their heartbeat and breathing is quieter here, and the gurgles of their digestive system join the internal song."
 					if(container.digestion_factor==VORE_DIGESTION_SPEED_SLOW||container.tf_factor)
-						dat += "You feel a slight, odd tingle on your skin. "
+						dat += "You feel a slight, odd tingle on your skin. The warmth should make you doze off soon enough. "
 					else if(container.digestion_factor)
-						dat += "Your body is quickly digesting. "
+						dat += "Your body is quickly digesting within [container.owner]'s womb, the air is thin and you're already having trouble staying awake  "
 					if(container.has_people()>1)
 						dat += "You can feel [container.has_people()-1] other [container.has_people()>2 ? "people" : "person"] in your fleshy prison. "
 				else if(istype(container,/datum/vore_organ/breast))
 					dat += "You are in [container.owner]'s breast. "
 					if(container.digestion_factor)
-						dat += "Your body is getting rather milky. "
+						dat += "Your body is getting rather milky, you're being melted inside these breasts! "
 					if(container.has_people()>1)
 						dat += "You can feel [container.has_people()-1] other [container.has_people()>2 ? "people" : "person"] in your jiggly prison. "
 				else if(istype(container,/datum/vore_organ/tail))
-					dat += "You are in [container.owner]'s tail. "
+					dat += "You are in [container.owner]'s tail. Each shift of their hips causes your world to move about ever so much. "
 					if(container.digestion_factor==VORE_DIGESTION_SPEED_SLOW)
-						dat += "You feel a slight, burning tingle on your skin. "
+						dat += "You feel a slight, burning tingle on your skin. The swaying is luring you to just close your eyes and give in. "
 					else if(container.digestion_factor)
-						dat += "Your body is quickly digesting. "
+						dat += "Your body is quickly digesting as a lump inside [container.owner]'s tail. The air is thin and you won't last much longer! "
 					if(container.has_people()>1)
 						dat += "You can feel [container.has_people()-1] other [container.has_people()>2 ? "people" : "person"] in your fleshy prison. "
 					if(container.transfer_factor)
-						dat += "The tail's muscles are sliding you somewhere."
+						dat += "The tail's muscles are sliding you somewhere deeper inside of your predator, you can already feel parts of you being squeezed into the wrinkled folds of that stomach."
 				else if(istype(container,/datum/vore_organ/insole))
-					dat += "You are pressed against [container.owner]'s foot. "
+					dat += "You are pressed against [container.owner]'s foot. Each step they take presses over your form. "
 				else if(istype(container,/datum/vore_organ/insuit))
-					dat += "You are pressed against [container.owner]'s body. "
+					dat += "You are pressed against [container.owner]'s form. It is very stuffy, and their scent is all around you. "
 				else
 					dat += "You're not sure where you are. "
 				dat += "<BR>"
@@ -255,11 +256,11 @@ obj/vore_preferences
 				var/datum/vore_organ/orgch
 				orgch=GetOrgan("stomach")
 				if(orgch.has_people())
-					dat += "Your [orgch.digestion_factor ? "gurgly " : ""]stomach bulges with [orgch.has_people()] [orgch.has_people()>1 ? "people" : "person"]. "
+					dat += "Your [orgch.digestion_factor ? "gurgly " : ""]stomach [pick("bulges","swells","is distended")] with [orgch.has_people()] [orgch.has_people()>1 ? "people" : "person"]. "
 					dat += "<BR>"
 				orgch=GetOrgan("womb")
 				if(orgch.has_people())
-					dat += "You are pregnant with [orgch.has_people()] [orgch.has_people()>1 ? "people" : "person"]. "
+					dat += "You have [orgch.digestion_factor ? "kneading " : ""] womb [pick("bulges","swells","is distended")] with [orgch.has_people()] [orgch.has_people()>1 ? "people" : "person"] withing your lower belly. Their weight is liable to be a pleasent addition to your hips. "
 					dat += "<BR>"
 				orgch=GetOrgan("cock")
 				if(orgch.has_people()||orgch.digestion_count)
@@ -281,15 +282,15 @@ obj/vore_preferences
 					dat += "<BR>"
 				orgch=GetOrgan("tail")
 				if(orgch.has_people())
-					dat += "Your tail has a wriggly lump[orgch.transfer_factor ? " that slowly moves toward the base" : ""]. "
+					dat += "Your tail has a wriggly lump[orgch.has_people()>1 ? "s" : ""] within it[orgch.transfer_factor ? " that slowly moves toward the base of it, your stomach will swell out soon" : ""]. "
 					dat += "<BR>"
 				orgch=GetOrgan("insole")
 				if(orgch.has_people())
-					dat += "Your insole[orgch.has_people()>1 ? "s" : ""] fit[orgch.has_people()>1 ? "" : "s"] snugly against your [orgch.has_people()>1 ? "feet" : "foot"]. "
+					dat += "Your insole[orgch.has_people()>1 ? "s" : ""] fit[orgch.has_people()>1 ? "" : "s"] snugly against your [orgch.has_people()>1 ? "feet" : "foot"]. Each step you make is pressing against them. "
 					dat += "<BR>"
 				orgch=GetOrgan("insuit")
 				if(orgch.has_people())
-					dat += "[orgch.has_people()>1 ? "Tiny people" : "A tiny person"] squirm[orgch.has_people()>1 ? "" : "s"] in your clothes."
+					dat += "[orgch.has_people()>1 ? "Tiny people" : "A tiny person"] squirm[orgch.has_people()>1 ? "" : "s"] in your clothes, against your form."
 					dat += "<BR>"
 
 			if (2) //Vore Abilities
@@ -333,6 +334,7 @@ obj/vore_preferences
 
 				dat += "<BR>"
 				dat += " <B>Click a method to ban it.</B> Banned methods will appear in bold. When banned, you cannot be eaten with this vore type.<BR>"
+				dat += GenerateBanSwitcher(VORE_METHOD_ORAL,"Oral")
 				dat += GenerateBanSwitcher(VORE_METHOD_COCK,"Cock")
 				dat += GenerateBanSwitcher(VORE_METHOD_ANAL,"Anal")
 				dat += GenerateBanSwitcher(VORE_METHOD_UNBIRTH,"Unbirth")
@@ -348,41 +350,42 @@ obj/vore_preferences
 
 			if (4) //Debug?!
 
-				dat += "<BR>"
-				if(target.ckey=="jayehh")
-					dat += "<h2>Debug Options</h2>"
-					dat +=     "<B>Vore Log:</B> <a href='?src=\ref[src];preference=tab;tab=5;mod=vore'>Check</a>"
-					dat += "<BR><B>Observe Log:</B> <a href='?src=\ref[src];preference=tab;tab=5;mod=observe'>Check</a>"
-					dat += "<BR><B>Whitelist:</B> <a href='?src=\ref[src];preference=tab;tab=5;mod=whitelist'>Check</a>"
-					//dat += "<BR><B>World Log:</B> <a href='?src=\ref[src];preference=tab;tab=5;mod=world'>Check</a>"
-					dat += "<BR><B>Size: </B>"
-					dat += "<a href='?src=\ref[src];preference=grow'>Grow</a>"
-					dat += "<a href='?src=\ref[src];preference=shrink'>Shrink</a>"
-					dat += "<BR><B>Taur: </B>"
-					dat += "<a href='?src=\ref[src];preference=taur'>Toggle</a>"
-					dat += "<BR><B>Naga: </B>"
-					dat += "<a href='?src=\ref[src];preference=naga'>On</a>"
-					dat += "<BR><B>Spawn: </B>"
-					dat += "<a href='?src=\ref[src];preference=spawn;item=narky'>Narky Gear</a>"
-					dat += "<a href='?src=\ref[src];preference=spawn;item=shrink'>Shrink Ray</a>"
-					dat += "<a href='?src=\ref[src];preference=spawn;item=grow'>Growth Ray</a>"
+		//		dat += "<BR>"
+		//		if(target.ckey=="jayehh"|| "poojawa"|| "nebulacallisto"|| "leonleonardo"|| "brimcon"|| "cyrema"|| "mrsebbi"|| "subtumaka")
+		//			dat += "<h2>Debug Options</h2>"
+		//			dat +=     "<B>Vore Log:</B> <a href='?src=\ref[src];preference=tab;tab=5;mod=vore'>Check</a>"
+		//			dat += "<BR><B>Observe Log:</B> <a href='?src=\ref[src];preference=tab;tab=5;mod=observe'>Check</a>"
+		//			dat += "<BR><B>Whitelist:</B> <a href='?src=\ref[src];preference=tab;tab=5;mod=whitelist'>Check</a>"
+		//			//dat += "<BR><B>World Log:</B> <a href='?src=\ref[src];preference=tab;tab=5;mod=world'>Check</a>"
+		//			dat += "<BR><B>Size: </B>"
+		//			dat += "<a href='?src=\ref[src];preference=grow'>Grow</a>"
+		//			dat += "<a href='?src=\ref[src];preference=shrink'>Shrink</a>"
+		//			dat += "<BR><B>Taur: </B>"
+		//			dat += "<a href='?src=\ref[src];preference=taur'>Toggle</a>"
+		//			//dat += "<BR><B>Naga: </B>"
+		//			//dat += "<a href='?src=\ref[src];preference=naga'>On</a>"
+		//			dat += "<BR><B>Spawn: </B>"
+		//			//dat += "<a href='?src=\ref[src];preference=spawn;item=narky'>Narky Gear</a>"
+		//			dat += "<a href='?src=\ref[src];preference=spawn;item=shrink'>Shrink Ray</a>"
+		//			dat += "<a href='?src=\ref[src];preference=spawn;item=grow'>Growth Ray</a>"
 
-			if (5) //Log menu.
-				dat += "<BR>"
-				if(target.ckey=="jayehh")
-					switch(tab_mod)
-						if("observe")
-							dat += "<h2>Observe Log</h2>"
-							dat += global_observe_log
+		//	if (5) //Log menu. Logically, if Poojawa bastardizes enough code, it'll work, right?
+
+		//		dat += "<BR>"
+		//		if(target.ckey=="jayehh"|| "poojawa"|| "nebulacallisto"|| "leonleonardo"|| "brimcon"|| "cyrema"|| "mrsebbi"|| "subtumaka")
+		//			switch(tab_mod)
+		//				if("observe")
+		//					dat += "<h2>Observe Log</h2>"
+		//					dat += global_observe_log
 						//if("world")
 						//	dat += "<h2>World Log</h2>"
-						if("whitelist")
-							dat += "<h2>Whitelist</h2>"
-							for(var/txt in whitelist_keys)
-								dat+="[txt]<BR>"
-						else
-							dat += "<h2>Vore Log</h2>"
-							dat += global_vore_log
+		//				if("whitelist")
+		//					dat += "<h2>Whitelist</h2>"
+		//					for(var/txt in whitelist_keys)
+		//						dat+="[txt]<BR>"
+		//				else
+		//					dat += "<h2>Vore Log</h2>"
+		//					dat += global_vore_log
 
 			if (6) //Transformation menu.
 				dat += "<BR>"
@@ -482,7 +485,7 @@ obj/vore_preferences
 			VD.healing_factor = 0
 			VD.tf_factor = 0
 			if(VD.has_people())
-				vore_log("[VD.owner]'s [VD.type] digestion changed to [VD.digestion_factor].",VD.owner)
+				vore_admins("[VD.owner]'s [VD.type] digestion changed to [VD.digestion_factor].",VD.owner)
 
 		if(href_list["preference"] == "digest_h")
 			if(target.reagents)
@@ -494,7 +497,7 @@ obj/vore_preferences
 			VD.healing_factor = 1
 			VD.tf_factor = 0
 			if(VD.has_people())
-				vore_log("[VD.owner]'s [VD.type] set to heal.",VD.owner)
+				vore_admins("[VD.owner]'s [VD.type] set to heal.",VD.owner)
 
 		if(href_list["preference"] == "release")
 			var/datum/vore_organ/VD=GetOrgan(href_list["organ"])
@@ -524,7 +527,7 @@ obj/vore_preferences
 
 		if(href_list["preference"] == "transform")
 			target.set_vore_transform(GetOrgan(href_list["organ"]))
-			//vore_log("[VD.owner]'s [VD.type] set to transform.",VD.owner)
+			//vore_admins("[VD.owner]'s [VD.type] set to transform.",VD.owner)
 
 		if(href_list["preference"] == "cock")
 			var/datum/preferences/PD=target
@@ -605,17 +608,21 @@ obj/vore_preferences
 
 
 
-datum/mind/var/vore_log=""
-var/global_vore_log=""
-proc/vore_log(var/T,var/mob/living/pred=null,var/mob/living/prey=null)
-	global_vore_log+="<B>-</B>"+T+"<BR>"
-	if(pred&&pred.mind)
-		pred.mind.vore_log+="-"+T+"\n"
-	if(prey&&prey.mind)
-		prey.mind.vore_log+="-"+T+"\n"
-var/global_observe_log=""
-proc/kp_log_observe(var/T)
-	global_observe_log+="<B>-</B>"+T+"<BR>"
+//datum/mind/var/vore_admins=""
+//var/global_vore_log=""
+//proc/vore_admins(var/T,var/mob/living/pred=null,var/mob/living/prey=null)
+//	global_vore_log+="<B>-</B>"+T+"<BR>"
+//	if(pred&&pred.mind)
+//		pred.mind.vore_admins+="-"+T+"\n"
+//	if(prey&&prey.mind)
+//		prey.mind.vore_admins+="-"+T+"\n"
+//var/global_observe_log=""
+//proc/kp_log_observe(var/T)
+//	global_observe_log+="<B>-</B>"+T+"<BR>"
+
+/proc/vore_admins(var/msg)
+	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
+	admins << msg
 
 
 proc/sanitize_vore_list(var/list/lst=null)
