@@ -217,10 +217,23 @@
 	..()
 	charge = 0
 
+/obj/item/weapon/stock_parts/cell/bluespace
+	name = "bluespace power cell"
+	origin_tech = "powerstorage=7"
+	icon_state = "bscell"
+	maxcharge = 40000
+	g_amt = 80
+	rating = 6
+	chargerate = 4000
+
+/obj/item/weapon/stock_parts/cell/bluespace/empty/New()
+	..()
+	charge = 0
+
 /obj/item/weapon/stock_parts/cell/infinite
 	name = "infinite-capacity power cell!"
 	icon_state = "icell"
-	origin_tech =  null
+	origin_tech = "powerstorage=10"
 	maxcharge = 30000
 	g_amt = 80
 	rating = 6
@@ -243,10 +256,11 @@
 
 /obj/item/weapon/stock_parts/cell/high/slime
 	name = "charged slime core"
-	desc = "A yellow slime core infused with plasma, it crackles with power."
-	origin_tech = "powerstorage=2;biotech=4"
+	desc = "A yellow slime core infused with plasma, it crackles with power, highly rechargable"
+	origin_tech = "powerstorage=4;biotech=4"
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "yellow slime extract"
+	chargerate = 3500
 	m_amt = 0
 	g_amt = 0
 
