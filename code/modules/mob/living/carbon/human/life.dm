@@ -57,6 +57,8 @@
 	else
 		return pressure
 
+	if(istype(loc, /mob/living/carbon/human)) return ONE_ATMOSPHERE
+
 
 /mob/living/carbon/human/handle_disabilities()
 	..()

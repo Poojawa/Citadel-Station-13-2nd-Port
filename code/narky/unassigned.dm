@@ -10,8 +10,8 @@
 // A little button for error reports
 // FIX THE THING ABOUT GETTING VORED WHILE BUCKLED - probs fixed fo' nao.
 // Allow for completion of vore objective while they're in people in you.
-// OOC: Smb64: hey pygmy, stuff from upgraded Autolathes (ones with pico-manipulators and super matter-bins) show a lower material cost in the window,
-	//but still costs the same as a normal Autolathe (ones with micro-manipulators and matter-bins)... might want to fix that
+//koshidumb
+//koshidumb
 
 
 //Constants
@@ -173,7 +173,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 			*/
 			if(istype(M, /mob/living))
 				if(M.stat == 2 && (M.getFireLoss()>=100||!istype(M,/mob/living/carbon/human)) && digestion_factor)
-					vore_log("[owner.real_name] has digested [M.real_name] in [type].",owner,M)
+					vore_admins("[owner.real_name] has digested [M.real_name] in [type].",owner,M)
 					if(M.mind&&owner.mind)
 						M.mind.digested_by.Add(owner.mind)
 						owner.mind.people_digested.Add(M.mind)
@@ -252,7 +252,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 		last_release=SSair.times_fired
 		flavour_text(style,prey,extra_info)
 		if(prey)
-			vore_log("[owner.real_name] has released [prey.real_name] from [type]. Code [style].",owner,prey)
+			//message_admins("[owner.real_name] has released [prey.real_name] from [type]. Code [style].",owner,prey)
 			place_in_next(prey)
 			//updateappearance(owner)
 			return 1
@@ -297,7 +297,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 		for(var/obj/relea in contents)
 			place_in_next(relea)
 		for(var/mob/living/relea in contents)
-			vore_log("[owner.real_name] has released [relea.real_name] from [type]. Code [style].",owner,relea)
+			//message_admins("[owner.real_name] has released [relea.real_name] from [type]. Code [style].",owner,relea)
 			place_in_next(relea)
 		//updateappearance(owner)
 		return 1
@@ -307,7 +307,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 		if(istype(addit,/mob/living))
 			M=addit
 		if(M)
-			vore_log("[owner.real_name]'s [type] has added [M.real_name].[digestion_factor ? " Digestion at [digestion_factor]." : ""][tf_factor ? " Transformation is on." : ""][healing_factor ? " Healing is on." : ""]",owner,M)
+			vore_admins("[owner.real_name]'s [type] has added [M.real_name].[digestion_factor ? " Digestion at [digestion_factor]." : ""][tf_factor ? " Transformation is on." : ""][healing_factor ? " Healing is on." : ""]",owner,M)
 		addit.loc = owner
 		owner.stomach_contents.Add(addit)
 		contents.Add(addit)
@@ -326,7 +326,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 					break
 		if(source==FLAVOUR_DIGEST)
 			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s stomach and a lump dissipates. Someone must have digested.</span>")
-			prey<<"<span class='warning'>You gurgle away inside [owner]'s stomach.</span>"
+			prey<<"<span class='warning'>You gurgle away inside [owner]'s stomach. What you were is now just fat on their body as the process of digestion continues .</span>"
 		else if(source==FLAVOUR_RELEASE)
 			var/live_people=0
 			for(var/mob/living/M in contents)
@@ -508,7 +508,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 	assoc_fluid="semen"
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s crotch. Someone must have digested.</span>")
+			owner.visible_message("<span class='danger'>You hear loud gurgling from between [owner]'s thighs. Someone must have digested inside their manhood.</span>")
 			prey<<"<span class='warning'>You turn into [owner] [pick("spooge","cum","semen","batter","seed")].</span>"
 		else if(source==FLAVOUR_RELEASE)
 			digestion_count+=owner.vore_balls_datum.digestion_count
@@ -571,12 +571,12 @@ var/const/VORE_SIZEDIFF_ANY=5
 				owner.visible_message("<span class='notice'>[owner] suddenly orgasms, spraying a load of cum.</span>")
 			owner.vore_balls_datum.release(FLAVOUR_SILENT,prey)
 		else if(source==FLAVOUR_ESCAPE&&prey)
-			owner.visible_message("<span class='notice'>[prey] slips out of [owner]'s cock.</span>")
+			owner.visible_message("<span class='notice'>[prey] slips out of [owner]'s cock, the smell is quite interesting.</span>")
 		else if(source==FLAVOUR_TRANSFORM)
 			owner<<"Your cock twitches. A transformation is complete."
 		else if(source==FLAVOUR_TRANSFER)
-			owner << "<span class='notice'>Someone moves into your balls.</span>"
-			prey<<"<span class='notice'>You move into [owner]'s balls.</span>"
+			owner << "<span class='notice'>Someone moves into your balls.Their weight settling admist the cum-filled orbs</span>"
+			prey<<"<span class='notice'>You move into [owner]'s balls, squeezed out of their cock and into the musky pool of seed. You're now rocking between each other step of .</span>"
 		else ..()
 	check_exist()
 		if(owner.has_cock())
@@ -594,10 +594,10 @@ var/const/VORE_SIZEDIFF_ANY=5
 			return ..()
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s crotch. Someone must have digested.</span>")
-			prey<<"<span class='warning'>You turn into [owner] [pick("spooge","cum","semen","batter","seed")].</span>"
+			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s balls. Someone must have digested.</span>")
+			prey<<"<span class='warning'>You turn into [owner] [pick("spooge","cum","semen","batter","seed")]. The lumps you made smoothing out as the sac contracts around your melted mass. </span>"
 		else if(source==FLAVOUR_ESCAPE&&prey)
-			owner.visible_message("<span class='notice'>[prey] slips out of [owner]'s cock.</span>")
+			owner.visible_message("<span class='notice'>[prey] slips out of [owner]'s cock. The smell is interesting. </span>")
 		else if(source==FLAVOUR_TRANSFORM)
 			owner<<"Your balls stir. A transformation is complete."
 		else ..()
@@ -611,8 +611,8 @@ var/const/VORE_SIZEDIFF_ANY=5
 	assoc_fluid="femjuice"
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s belly and a lump dissipates. Someone must have digested.</span>")
-			prey<<"<span class='warning'>You gurgle away inside [owner]'s womb.</span>"
+			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s belly and a lump rounds out and flattens. Someone must have melted away inside [owner]'s womb.</span>")
+			prey<<"<span class='warning'>You gurgle and slosh away inside [owner]'s womb. Your essence fills them out with just that bit more detail and satisfaction. The lump you made is rounded out and slowly shrinking. </span>"
 		else if(source==FLAVOUR_RELEASE)
 			if(istype(owner.loc,/turf))
 				var/already_messy=0
@@ -629,7 +629,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 			if(digestion_count&&!live_people)
 				owner.visible_message("<span class='notice'>[owner] masturbates their vagina, releasing a torrent of femjuice.</span>")
 			else if(live_people)
-				owner.visible_message("<span class='notice'>[owner] masturbates their vagina, releasing its femjuice-drenched occupants..</span>")
+				owner.visible_message("<span class='notice'>[owner] masturbates their vagina, releasing its musk-drenched occupants..</span>")
 			else
 				owner.visible_message("<span class='notice'>[owner] masturbates their vagina, dripping a small amount of femjuice.</span>")
 		else if(source==FLAVOUR_HURL)
@@ -652,7 +652,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 			else
 				owner.visible_message("<span class='notice'>[owner] suddenly orgasms, dripping a small amount of femjuice.</span>")
 		else if(source==FLAVOUR_ESCAPE&&prey)
-			owner.visible_message("<span class='notice'>[prey] slips out of [owner]'s vagina.</span>")
+			owner.visible_message("<span class='notice'>[prey] slips out of [owner]'s vagina, the smell is... interesting.</span>")
 		else ..()
 	check_exist()
 		return owner.has_vagina() ? 1 : 0
@@ -662,8 +662,8 @@ var/const/VORE_SIZEDIFF_ANY=5
 	assoc_fluid="milk"
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner.visible_message("<span class='danger'>[owner]'s breasts jiggle. Someone must have turned into milk.</span>")
-			prey<<"<span class='warning'>You turn into [owner]'s milk.</span>"
+			owner.visible_message("<span class='danger'>[owner]'s breasts jiggle. Someone must have turned into milk.The lumps they've made slosh and sink into a larger cupsize</span>")
+			prey<<"<span class='warning'>You turn into [owner]'s milk, the bulges of your body simply adding to their cup size in a smooth swell.</span>"
 		else if(source==FLAVOUR_RELEASE)
 			if(istype(owner.loc,/turf))
 				var/already_messy=0
@@ -726,9 +726,9 @@ var/const/VORE_SIZEDIFF_ANY=5
 				return
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_RELEASE)
-			owner.visible_message("<span class='notice'>[owner] takes off their [last_shoes] and dumps the contents.</span>")
+			owner.visible_message("<span class='notice'>[owner] takes off their [last_shoes] and dumps the contents onto the floor.</span>")
 		else if(source==FLAVOUR_ESCAPE&&prey)
-			owner.visible_message("<span class='notice'>[prey] crawls away from [owner]'s [last_shoes].</span>")
+			owner.visible_message("<span class='notice'>[prey] crawls out and away from [owner]'s [last_shoes],, looking quite dishelved.</span>")
 
 /datum/vore_organ/insuit
 	exterior=1
@@ -755,7 +755,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
 			owner.visible_message("<span class='danger'>[owner]'s tail gurgles and a lump on it dissipates. Someone must have digested..</span>")
-			prey<<"<span class='warning'>You gurgle away inside [owner]'s tail.</span>"
+			prey<<"<span class='warning'>You gurgle away inside [owner]'s tail, your form softening and adding to the tail's fluff and their curves.</span>"
 		else if(source==FLAVOUR_RELEASE)
 			var/live_people=0
 			for(var/mob/living/M in contents)
@@ -779,12 +779,12 @@ var/const/VORE_SIZEDIFF_ANY=5
 			if(!digestion_count&&live_people)
 				owner.visible_message("<span class='notice'>[owner]'s tail thrashes in pain, spewing forth those inside.</span>")
 		else if(source==FLAVOUR_ESCAPE&&prey)
-			owner.visible_message("<span class='notice'>[prey] crawls out of [owner]'s tailmaw.</span>")
+			owner.visible_message("<span class='notice'>[prey] crawls out of [owner]'s tailmaw, even as it snaps at their heels to reclaim them.</span>")
 		else if(source==FLAVOUR_TRANSFORM)
 			owner<<"Your tail twitches. A transformation is complete."
 		else if(source==FLAVOUR_TRANSFER)
-			owner.visible_message("<span class='notice'>A lump in [owner]'s tail moves toward the base.</span>")
-			prey<<"<span class='notice'>You move into [owner]'s stomach.</span>"
+			owner.visible_message("<span class='notice'>A lump in [owner]'s tail moves toward the base, [owner]'s stomach sags with the added weight and a soft gurgle of moving air pockets.</span>")
+			prey<<"<span class='notice'>You move into [owner]'s stomach, soaked in the saliva-like drool of the maw. Your new enviroment squeezes all around you.</span>"
 
 
 //Procs handling vore.
@@ -860,17 +860,17 @@ var/const/VORE_SIZEDIFF_ANY=5
 	if(!src.vore_datums_initialized) src.vore_init_datums()
 	if(helper==prey)
 		if(method==VORE_METHOD_ORAL)
-			src.visible_message("<span class='danger'>[helper] begins to force themself into the mouth of [src]!</span>")
+			src.visible_message("<span class='danger'>[helper] begins to force themself into the mouth of [src]! [src]'s jaws are forced open, and their neck soon swells with [helper]'s head!</span>")
 		else if(method==VORE_METHOD_ANAL)
 			src.visible_message("<span class='danger'>[helper] presses against [src]'s back enterance and begins shoving!</span>")
 		else if(method==VORE_METHOD_COCK)
-			src.visible_message("<span class='danger'>[helper] nuzzles the tip of [src]'s cock, coaxing it to eat them.</span>")
+			src.visible_message("<span class='danger'>[helper] nuzzles the tip of [src]'s cock, coaxing it to eat them.Soon starting to push their way inside the length.</span>")
 		else if(method==VORE_METHOD_UNBIRTH)
-			src.visible_message("<span class='danger'>[helper] starts to dive head-first into [src]'s crotch!</span>")
+			src.visible_message("<span class='danger'>[helper] starts to nose head-first into [src]'s vagina, forcing thighs apart and the lower belly to swell as [helper] scrabbles for leverage!</span>")
 		else if(method==VORE_METHOD_BREAST)
-			src.visible_message("<span class='danger'>[helper] presses their nose against [src]'s nipple!</span>")
+			src.visible_message("<span class='danger'>[helper] presses their nose against [src]'s nipple, giving it a lick to encourage their devourment!</span>")
 		else if(method==VORE_METHOD_TAIL)
-			src.visible_message("<span class='danger'>[helper] hugs [src]'s tail and tries to fit inside it!</span>")
+			src.visible_message("<span class='danger'>[helper] hugs [src]'s tail and tries to fit inside it! The maw opens wide and engulfs over their head and shoulders in short order, making rapid progress!</span>")
 		else if(method==VORE_METHOD_INSOLE)
 			var/obj/O=src.get_shoes()
 			if(!O)return
@@ -884,28 +884,28 @@ var/const/VORE_SIZEDIFF_ANY=5
 	else if(helper==src)
 		if(method==VORE_METHOD_ORAL)	//Needs to be rewritten so it's based on each vore type, not each post/pre vore text.
 			if(vore_head_first)
-				src.visible_message("<span class='danger'>[src] begins to force [prey] into their mouth!</span>")
+				src.visible_message("<span class='danger'>[src] begins to force [prey] into their mouth! Jaws overtaking their head and soon working over the shoulders!</span>")
 			else
-				src.visible_message("<span class='danger'>[src] grabs [prey]'s ankles and begins to force them into their mouth foot-first!</span>")
+				src.visible_message("<span class='danger'>[src] grabs [prey]'s ankles and begins to force them into their mouth foot-first! Jaws aggressively devouring up those legs quickly!</span>")
 		else if(method==VORE_METHOD_ANAL)
 			src.visible_message("<span class='danger'>[src] begins to force [prey] into their anus!</span>")
 		else if(method==VORE_METHOD_COCK)
 			if(vore_head_first)
-				src.visible_message("<span class='danger'>[src] grabs the back of [prey]'s head and presses it to the tip of their hungry cock!</span>")
+				src.visible_message("<span class='danger'>[src] grabs the back of [prey]'s head and presses it to the tip of their hungry cock. A quick thrust forward claims their entire face!</span>")
 			else
-				src.visible_message("<span class='danger'>[src] grabs [prey]'s ankles and presses the feet to the tip of their hungry cock!</span>")
+				src.visible_message("<span class='danger'>[src] grabs [prey]'s ankles and presses the feet to the tip of their hungry cock, working themselves in a pulling motion to help [prey] down!</span>")
 		else if(method==VORE_METHOD_UNBIRTH)
 			if(vore_head_first)
-				src.visible_message("<span class='danger'>[src] grabs [prey]'s shoulders and begins shoving them into their crotch!</span>")
+				src.visible_message("<span class='danger'>[src] grabs [prey]'s shoulders and begins shoving them into their crotch, a leg over [prey]'s frame. It wouldn't take long for [src]'s belly to start bulging with their treat as their muscle pull strongly!</span>")
 			else
-				src.visible_message("<span class='danger'>[src] grabs [prey]'s ankles and begins shoving the feet into their crotch!</span>")
+				src.visible_message("<span class='danger'>[src] grabs [prey]'s ankles and begins shoving the feet into their crotch, bracing themselves as they drag in those shins and knees quickly, warmth crawling its way up!</span>")
 		else if(method==VORE_METHOD_BREAST)
 			src.visible_message("<span class='danger'>[src] grabs [prey] and presses them against a nipple!</span>")
 		else if(method==VORE_METHOD_TAIL)
 			if(vore_head_first)
-				src.visible_message("<span class='danger'>[src] holds [prey] still while their tail looms overhead, salivating!</span>")
+				src.visible_message("<span class='danger'>[src] holds [prey] still while their tail looms overhead, salivating! It soon plunges over their head and shoulders in the first gulp, aggressively dragging [prey] into becoming a bulge within!</span>")
 			else
-				src.visible_message("<span class='danger'>[src] holds [prey] still while their tail laps at its prey's feet!</span>")
+				src.visible_message("<span class='danger'>[src] holds [prey]'s form still while their tail laps at its prey's feet, the warm, toothless maw sliding up and over the calves in a single, pulsing swallow!</span>")
 		else if(method==VORE_METHOD_INSOLE)
 			var/obj/O=src.get_shoes()
 			if(!O)return
@@ -918,17 +918,17 @@ var/const/VORE_SIZEDIFF_ANY=5
 			src.visible_message("<span class='danger'>[src] is attempting to devour [prey]!</span>")
 	else
 		if(method==VORE_METHOD_ORAL)
-			src.visible_message("<span class='danger'>[helper] begins to force [prey] into the mouth of [src]!</span>")
+			src.visible_message("<span class='danger'>[helper] begins to force [prey] into the mouth of [src]! [src]'s jaws are forced open around the prey, and gulps reflexively!</span>")
 		else if(method==VORE_METHOD_ANAL)
 			src.visible_message("<span class='danger'>[helper] presses [prey] against [src]'s back enterance and begins shoving!</span>")
 		else if(method==VORE_METHOD_COCK)
-			src.visible_message("<span class='danger'>[helper] holds [prey] to the tip of [src]'s cock, coaxing it to eat them.</span>")
+			src.visible_message("<span class='danger'>[helper] holds [prey] to the tip of [src]'s cock, pushing their face into it, which soon vanishes inside!.</span>")
 		else if(method==VORE_METHOD_UNBIRTH)
-			src.visible_message("<span class='danger'>[helper] grabs [prey]'s shoulders and shoves them into [src]'s crotch!</span>")
+			src.visible_message("<span class='danger'>[helper] grabs [prey]'s shoulders and shoves them into [src]'s crotch! [src]'s thighs are forced to spread as they take in [prey]'s form, their head and chest soon pushed within the depths!</span>")
 		else if(method==VORE_METHOD_BREAST)
 			src.visible_message("<span class='danger'>[helper] grabs [prey] and presses them against [src]'s nipple!</span>")
 		else if(method==VORE_METHOD_TAIL)
-			src.visible_message("<span class='danger'>[helper] holds [prey] still while [src]'s tail looms overhead, salivating!</span>")
+			src.visible_message("<span class='danger'>[helper] holds [prey] still while [src]'s tail looms overhead, salivating! It quickly overtakes [prey]'s head and chest, forcing [helper] to shift their grip down as to not follow their target inside!</span>")
 		else if(method==VORE_METHOD_INSOLE)
 			var/obj/O=src.get_shoes()
 			if(!O)return
@@ -945,49 +945,49 @@ var/const/VORE_SIZEDIFF_ANY=5
 
 	if(helper==prey)
 		if(method==VORE_METHOD_ORAL)
-			src.visible_message("<span class='danger'>[helper] gives a final push, and is on the non-stop road to [src]'s belly!</span>")
+			src.visible_message("<span class='danger'>[helper] gives a final push, and is on the non-stop road to [src]'s belly! [src]'s neck loses the bulges it gained with [helper]'s devourment, gut sagging outwards with the newfound meal.</span>")
 		else if(method==VORE_METHOD_ANAL)
 			src.visible_message("<span class='danger'>With a final shove, [helper] disappears into [src]'s anus!</span>")
 		else if(method==VORE_METHOD_COCK)
-			src.visible_message("<span class='danger'>[helper] slips the rest of the way into [src]'s slit, pre-slicked feet vanishing with a slurp.</span>")
+			src.visible_message("<span class='danger'>[helper] slips the rest of the way into [src]'s shaft, pre-slicked feet vanishing with an inadvertant moan from [src].</span>")
 		else if(method==VORE_METHOD_UNBIRTH)
-			src.visible_message("<span class='danger'>[helper] engulfs themself in [src]'s sex.</span>")
+			src.visible_message("<span class='danger'>[helper] engulfs themself in [src]'s sex, the last of them tugged from view as [src] gains a new belly bump, adjusting their stance with the weight.</span>")
 		else if(method==VORE_METHOD_BREAST)
-			src.visible_message("<span class='danger'>[helper] slips inside [src]'s breast.</span>")
+			src.visible_message("<span class='danger'>[helper] slips inside [src]'s breast, leaving it larger than it was before.</span>")
 		else if(method==VORE_METHOD_TAIL)
-			src.visible_message("<span class='danger'>[src]'s tail engulfs [helper]. That's what they get!</span>")
+			src.visible_message("<span class='danger'>[src]'s tail engulfs [helper]. Their eager squirming muted under the tail flesh as the bulge moves deeper and deeper!</span>")
 		else if(method==VORE_METHOD_INSOLE)
 			var/obj/O=src.get_shoes()
 			if(!O)return
-			src.visible_message("<span class='danger'>[helper] fits in nice and snug.</span>")
+			src.visible_message("<span class='danger'>[helper] fits in nice and snug.agains't [src]'s foot</span>")
 		else if(method==VORE_METHOD_INSUIT)
 			var/obj/O=src.get_suit()
 			if(!O)return
-			src.visible_message("<span class='danger'>[helper] fits in nice and snug.</span>")
+			src.visible_message("<span class='danger'>[helper] fits in nice and snug inside [src]'s clothing, the added lump squirming to get comfortable.</span>")
 		else
 			src.visible_message("<span class='danger'>[helper] has fed themself to [src]!</span>")
 	else if(helper==src)
 		if(method==VORE_METHOD_ORAL)
-			src.visible_message("<span class='danger'>[prey] vanishes within the hungry maw of [src]!</span>")
+			src.visible_message("<span class='danger'>[prey] vanishes within the hungry maw of [src]!Their stomach bulges with their meal.</span>")
 		else if(method==VORE_METHOD_ANAL)
 			src.visible_message("<span class='danger'>[prey] disappears into [src]'s pucker!</span>")
 		else if(method==VORE_METHOD_COCK)
 			if(vore_head_first)
-				src.visible_message("<span class='danger'>[prey]'s feet go past [src]'s cockslit with a noisy slurp.</span>")
+				src.visible_message("<span class='danger'>[prey]'s feet go past [src]'s cockslit with a noisy slurp. The shaft droops with the prey within it, as they sink deep enough to not easily be reached anymore!</span>")
 			else
-				src.visible_message("<span class='danger'>[prey]'s head vanishes into [src]'s cockslit with a noisy slurp.</span>")
+				src.visible_message("<span class='danger'>[prey]'s head vanishes into [src]'s cockslit with a squelch, the last views of the room vanishing down the tube. A wet gush of pre splashing out as the lumps decend down the length.</span>")
 		else if(method==VORE_METHOD_UNBIRTH)
 			if(vore_head_first)
-				src.visible_message("<span class='danger'>[src] shoves [prey]'s feet fully into their sex, their fingers lingering to tease the folds.</span>")
+				src.visible_message("<span class='danger'>[src] shoves [prey]'s feet fully into their sex, belly swelling and passage oozing while their fingers linger to tease themselves, soon admiring the added bulge on their hips</span>")
 			else
-				src.visible_message("<span class='danger'>[src] shoves [prey]'s head fully into their sex, their fingers lingering to tease the folds.</span>")
+				src.visible_message("<span class='danger'>[src] shoves [prey]'s head fully into their sex, [prey]'s last view of the world vanishing with [src]'s fingers lingering to tease the folds and push them deeper into the greedy flower</span>")
 		else if(method==VORE_METHOD_BREAST)
 			src.visible_message("<span class='danger'>[src] shoves [prey] inside their breast.</span>")
 		else if(method==VORE_METHOD_TAIL)
 			if(vore_head_first)
-				src.visible_message("<span class='danger'>[src]'s tail slurps [prey] in and turns them into a bulge.</span>")
+				src.visible_message("<span class='danger'>[src]'s tail slurps [prey]'s feet within and turns them into a bulge, The tail now drooping with the added mass that slowly traces itself in deeper.</span>")
 			else
-				src.visible_message("<span class='danger'>[src]'s tail slurps the rest of [prey] in and turns them into a bulge.</span>")
+				src.visible_message("<span class='danger'>[src]'s tail slurps [prey]'s head at last, the room framed by greedy maw as it turns them into a bulge. The tail now drooping with the added mass.</span>")
 		else if(method==VORE_METHOD_INSOLE)
 			if(!src.get_shoes())return
 			src.visible_message("<span class='danger'>[helper] fits [prey] in nice and snug.</span>")
@@ -998,23 +998,23 @@ var/const/VORE_SIZEDIFF_ANY=5
 			src.visible_message("<span class='danger'>[src] devours [prey]!</span>")
 	else
 		if(method==VORE_METHOD_ORAL)
-			src.visible_message("<span class='danger'>[helper] gives a final push, and [prey] is on the non-stop road to [src]'s belly!</span>")
+			src.visible_message("<span class='danger'>[helper] gives a final push on [prey]'s feet, the last of them vanishing into the conveyer of gullet flesh to [src]'s stomach! [src]'s gains a bulge with the added addition</span>")
 		else if(method==VORE_METHOD_ANAL)
 			src.visible_message("<span class='danger'>With a final shove from [helper], [prey] disappears into [src]'s anus!</span>")
 		else if(method==VORE_METHOD_COCK)
 			src.visible_message("<span class='danger'>[helper] pushes the last of [prey] into [src]'s slit, pulling their pre-slicked hands free just in time.</span>")
 		else if(method==VORE_METHOD_UNBIRTH)
-			src.visible_message("<span class='danger'>[helper] pushes [prey] into [src]'s sex, going wrist-deep themself.</span>")
+			src.visible_message("<span class='danger'>[helper] pushes [prey]'s feet firmly into [src]'s sex, going wrist-deep themself.They pull back their hand before it's tugged to the elbow and have a front row seat to the lower belly swelling with moving prey.</span>")
 		else if(method==VORE_METHOD_BREAST)
 			src.visible_message("<span class='danger'>[helper] shoves [prey] inside [src]'s breast.</span>")
 		else if(method==VORE_METHOD_TAIL)
-			src.visible_message("<span class='danger'>[src]'s tail engulfs [prey] and laps over [helper]'s hand.</span>")
+			src.visible_message("<span class='danger'>[src]'s tail completely engulfs over [prey]'s form, eagerly lapping over [helper]'s hand as if wanting a second helping within itself.[prey]'s bulges receed gradually into the center of the tail, awaiting their fate!</span>")
 		else if(method==VORE_METHOD_INSOLE)
 			if(!src.get_shoes())return
-			src.visible_message("<span class='danger'>[helper] fits [prey] in nice and snug.</span>")
+			src.visible_message("<span class='danger'>[helper] fits [prey] in [src]'s footwear, slipping it back onto their foot before [prey] could even think to escape..</span>")
 		else if(method==VORE_METHOD_INSUIT)
 			if(!src.get_suit())return
-			src.visible_message("<span class='danger'>[helper] fits [prey] in nice and snug.</span>")
+			src.visible_message("<span class='danger'>[helper] stuffs [prey] in through the opening of [src]'s clothing, putting it back into place before [prey] is able to wiggle free of the stuffy confines..</span>")
 		else
 			src.visible_message("<span class='danger'>[helper] has fed [prey] to [src]!</span>")
 
@@ -1022,11 +1022,11 @@ var/const/VORE_SIZEDIFF_ANY=5
 		qdel(G)
 
 	if(helper==src)
-		vore_log("[src] has eaten [prey]. Code [method].",src,prey)
+		vore_admins("[src] has eaten [prey]. Code [method].",src,prey)
 	else if(helper==prey)
-		vore_log("[prey] has fed themself to [src]. Code [method].",src,prey)
+		vore_admins("[prey] has fed themself to [src]. Code [method].",src,prey)
 	else
-		vore_log("[helper] has fed [prey] to [src]. Code [method].",src,prey)
+		vore_admins("[helper] has fed [prey] to [src]. Code [method].",src,prey)
 
 	var/datum/vore_organ/destination=vore_organ_for_method(method)
 	destination.add(prey)
@@ -1080,33 +1080,33 @@ var/const/VORE_SIZEDIFF_ANY=5
 
 /mob/living/proc/vore_obtain_method(var/mob/living/prey, var/mob/living/helper=src)
 	if(helper!=src&&helper.vore_current_method&src.vore_banned_methods)
-		return VORE_METHOD_ORAL
+		return VORE_METHOD_FAIL
 	if(helper.vore_current_method&prey.vore_banned_methods)
-		return VORE_METHOD_ORAL
+		return VORE_METHOD_FAIL
 	for(var/mob/living/check in prey)
 		if(helper.vore_current_method&check.vore_banned_methods)
-			return VORE_METHOD_ORAL
+			return VORE_METHOD_FAIL
 	/*if((helper.vore_current_method&prey.vore_banned_methods)||(helper.vore_current_method&src.vore_banned_methods)) //Check for bans.
 		return VORE_METHOD_ORAL*/
 	//To do: Add in checks for muzzles.
 	if(!vore_ability_check(helper.vore_current_method,prey)) //Is this even possible?
-		return VORE_METHOD_ORAL
+		return VORE_METHOD_FAIL
 	else if(helper.vore_current_method==VORE_METHOD_INSOLE) //Temporary
 		var/mob_count=0
 		for(var/mob/M in src.vore_insole_datum.contents)
 			mob_count+=1
 			if(mob_count>1)
-				return VORE_METHOD_ORAL
+				return VORE_METHOD_FAIL
 	else if(helper.vore_current_method==VORE_METHOD_INSUIT) //Temporary, too
 		var/mob_count=0
 		for(var/mob/M in src.vore_insuit_datum.contents)
 			mob_count+=1
 			if(mob_count>2)
-				return VORE_METHOD_ORAL
+				return VORE_METHOD_FAIL
 	else if(helper.vore_current_method==VORE_METHOD_TAIL)
 		if(!src.kpcode_mob_has_tail())
-			return VORE_METHOD_ORAL
-	return helper.vore_current_method
+			return VORE_METHOD_FAIL
+	return //helper.vore_current_method
 
 /mob/living/proc/vore_speed(var/mob/living/prey, var/method)
 	return 60+((prey.sizeplay_size-sizeplay_size)*10)
@@ -1524,7 +1524,7 @@ datum/objective/vore_digest/update_explanation_text()
 	if(target && target.current)
 		explanation_text = "Eat [target.current.real_name], the [!target_role_type ? target.assigned_role : target.special_role], and keep them. This order is dead or alive, so digest or otherwise kill them if they are too much trouble."
 	else
-		explanation_text = "Free Objective (Go eat some people! Digestion optional!)"
+		explanation_text = "Free Objective (Go eat some people! Digestion optional if they allow it!)"
 
 
 datum/objective/digest
@@ -1773,7 +1773,7 @@ var/list/traitor_test_list = null
 	else
 		traitor_test_list.Add("[inpt]")
 	log_admin("[key_name(usr)] has set [inpt] to be a traitor this round.")
-	message_admins("[key_name(usr)] has set [inpt] to be a traitor this round.")
+	vore_admins("[key_name(usr)] has set [inpt] to be a traitor this round.")
 	feedback_add_details("admin_verb","TRAITTEST") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -1822,11 +1822,11 @@ var/list/traitor_test_list = null
 	selection = alert("Give them a nice, eggy package?","Vore","Egg!","No.")
 	VO.tf_egg = selection=="Egg!" ? 1 : 0
 	if(VO.has_people()&&!VO.tf_factor)
-		vore_log("[VO.owner]'s [VO.type] set to transform.",VO.owner)
+		vore_admins("[VO.owner]'s [VO.type] set to transform.",VO.owner)
 	VO.tf_factor=VORE_TRANSFORM_SPEED_FAST
 	VO.digestion_factor=VORE_DIGESTION_SPEED_NONE
 	VO.healing_factor=0
-	src<<"Transform enabled. Digestion automatically disabled for this vore type."
+	src<<"Transform enabled. Digestion automatically disabled for this vore type and it will take time to complete."
 
 
 
@@ -2016,7 +2016,7 @@ var/list/traitor_test_list = null
 		if(findtext(msg, "byond://"))
 			src << "<B>Advertising other servers is not allowed.</B>"
 			log_admin("[key_name(src)] has attempted to advertise in LOOC: [msg]")
-			message_admins("[key_name_admin(src)] has attempted to advertise in LOOC: [msg]")
+			vore_admins("[key_name_admin(src)] has attempted to advertise in LOOC: [msg]")
 			return
 
 	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")
@@ -2070,7 +2070,7 @@ var/list/traitor_test_list = null
 	if(alert("Are you sure? This will whitelist things and cannot be undone.",,"Yes","No")=="Yes")
 		config.narkyjoblist=1
 		config.narkypaniclist=1
-		message_admins("\blue [key_name_admin(usr)] hit the panic button.", 1)
+		vore_admins("\blue [key_name_admin(usr)] hit the panic button.", 1)
 		log_admin("[key_name(usr)] hit the panic button.")
 	feedback_add_details("admin_verb","PAN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
