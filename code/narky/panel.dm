@@ -369,7 +369,7 @@ obj/vore_preferences
 
 			if (5) //Log menu.
 				dat += "<BR>"
-				if(target.ckey=="jayehh")
+				if(target.ckey == "jayehh" || "cyrema")
 					switch(tab_mod)
 						if("observe")
 							dat += "<h2>Observe Log</h2>"
