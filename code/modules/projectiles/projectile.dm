@@ -7,6 +7,7 @@
 	pass_flags = PASSTABLE
 	mouse_opacity = 0
 	hitsound = 'sound/weapons/pierce.ogg'
+	animate_movement = 0
 	var/def_zone = ""	//Aiming at
 	var/mob/firer = null//Who shot it
 	var/suppressed = 0	//Attack message
@@ -108,7 +109,6 @@
 		loc = target_turf
 		if(A)
 			permutated.Add(A)
-		Range()
 		return 0
 	else
 		if(A && A.density && !ismob(A) && !(A.flags & ON_BORDER)) //if we hit a dense non-border obj or dense turf then we also hit one of the mobs on that tile.

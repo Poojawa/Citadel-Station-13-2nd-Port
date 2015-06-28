@@ -2,9 +2,9 @@ datum/design/shrinkray
 	name = "Shrink Ray"
 	desc = "Make people small."
 	id = "shrinkray"
-	req_tech = list("combat" = 2, "materials" = 3, "engineering" = 2, "biotech" = 3)
+	req_tech = list("combat" = 5, "materials" = 3, "engineering" = 2, "biotech" = 3)
 	build_type = PROTOLATHE
-	materials = list("$metal" = 5000, "$glass" = 1000)
+	materials = list("$metal" = 5000, "$glass" = 1000, "$diamond" = 1500)
 	build_path = /obj/item/weapon/gun/energy/laser/sizeray/one
 	category = list("Weapons")
 
@@ -12,9 +12,9 @@ datum/design/growthray
 	name = "Growth Ray"
 	desc = "Make people small... To the person you hit."
 	id = "growthray"
-	req_tech = list("combat" = 2, "materials" = 4, "engineering" = 3, "bluespace" = 2)
+	req_tech = list("combat" = 5, "materials" = 4, "engineering" = 3, "bluespace" = 2)
 	build_type = PROTOLATHE
-	materials = list("$metal" = 5000, "$glass" = 1000)
+	materials = list("$metal" = 5000, "$glass" = 1000, "$diamond" = 1500)
 	build_path = /obj/item/weapon/gun/energy/laser/sizeray/two
 	category = list("Weapons")
 

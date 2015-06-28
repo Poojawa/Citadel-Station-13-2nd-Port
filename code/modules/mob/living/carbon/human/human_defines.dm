@@ -53,4 +53,4 @@
 
 	var/name_override //For temporary visible name changes
 
-	var/list/flavor_texts = list()
+	//var/list/flavor_texts = list()

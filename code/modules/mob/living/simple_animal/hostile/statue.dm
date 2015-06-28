@@ -18,8 +18,8 @@
 	health = 50000
 
 	harm_intent_damage = 70
-	melee_damage_lower = 68
-	melee_damage_upper = 83
+	melee_damage_lower = 34
+	melee_damage_upper = 56
 	attacktext = "claws"
 	attack_sound = 'sound/hallucinations/growl1.ogg'
 

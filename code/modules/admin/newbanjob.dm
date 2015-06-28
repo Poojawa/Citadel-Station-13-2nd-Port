@@ -9,9 +9,8 @@ var/savefile/Banlistjob
 	if (guest_jobbans(rank))
 		if(config.guest_jobban && IsGuestKey(key))
 			return 1
-	Banlistjob.cd = "/base"
-	if (Banlistjob.dir.Find("[key][id][rank]"))
-		return 1
+		if(config.narkyjoblist && !is_whitelisted(key))
+			return 1
 
 	Banlistjob.cd = "/base"
 	for (var/A in Banlistjob.dir)

@@ -325,8 +325,8 @@ var/const/VORE_SIZEDIFF_ANY=5
 					extra_info=0
 					break
 		if(source==FLAVOUR_DIGEST)
-			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s stomach and a lump dissipates. Someone must have digested. But who?</span>")
-			prey<<"<span class='warning'>You gurgle away inside [owner]'s stomach. What you were is now just fat on your predator's body as the process of digestion continues.</span>"
+			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s stomach and a lump dissipates. Someone must have digested.</span>")
+			prey<<"<span class='warning'>You gurgle away inside [owner]'s stomach. What you were is now just fat on their body as the process of digestion continues .</span>"
 		else if(source==FLAVOUR_RELEASE)
 			var/live_people=0
 			for(var/mob/living/M in contents)
@@ -334,17 +334,17 @@ var/const/VORE_SIZEDIFF_ANY=5
 				break
 			if(digestion_count&&!live_people)
 				if(extra_info==VORE_EXTRA_FULLTOUR)
-					owner.visible_message("<span class='notice'>[owner] awkwardly squats down and releases the remains of those inside them.</span>")
+					owner.visible_message("<span class='notice'>[owner] squats down and releases the remains of those inside them.</span>")
 				else
-					owner.visible_message("<span class='notice'>[owner] hacks and coughs, vomiting up the remains of those that were inside them.</span>")
+					owner.visible_message("<span class='notice'>[owner] hacks and coughs, spewing forth the remains of those inside them.</span>")
 			if(digestion_count&&live_people)
 				if(extra_info==VORE_EXTRA_FULLTOUR)
-					owner.visible_message("<span class='notice'>[owner] awkwardly squats down and releases those still inside them and what remains of others.</span>")
+					owner.visible_message("<span class='notice'>[owner] squats down and releases those still inside them.</span>")
 				else
 					owner.visible_message("<span class='notice'>[owner] hacks and coughs, spewing forth those that had still remained inside.</span>")
 			if(!digestion_count&&live_people)
 				if(extra_info==VORE_EXTRA_FULLTOUR)
-					owner.visible_message("<span class='notice'>[owner] awkwardly squats down and releases those inside them intact. </span>")
+					owner.visible_message("<span class='notice'>[owner] squats down and releases those inside them.</span>")
 				else
 					owner.visible_message("<span class='notice'>[owner] hacks and coughs, spewing forth those inside.</span>")
 		else if(source==FLAVOUR_HURL)
@@ -363,7 +363,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 		else if(source==FLAVOUR_TRANSFORM)
 			owner<<"Your belly stirs. A transformation is complete."
 		else if(source==FLAVOUR_TRANSFER)
-			owner.visible_message("<span class='notice'>This message shouldn't appear. wat u do dis for?</span>")
+			owner.visible_message("<span class='notice'>A thousand rainbow eyes stare at [owner]. Seems like Narky found a bug. What the hell did [owner] do?</span>")
 
 
 
@@ -377,12 +377,6 @@ var/const/VORE_SIZEDIFF_ANY=5
 		prey.vore_last_relay=SSair.times_fired
 		if(prey.a_intent=="help"&&!exterior)
 			owner.visible_message("<span class='notice'>Something shifts around within [owner].</span>")
-//		else if(istype(container,/datum/vore_organ/cock)||istype(container,/datum/vore_organ/balls))
-//			owner.visible_message("<span class='notice'>Something sloshes between the heavy orbs [owner] sports.</span>")
-//		else if(istype(container,/datum/vore_organ/womb))
-//			owner.visible_message("<span class='notice'>Something pushes outwards from [owner]'s lower belly.</span>")
-//		else if(istype(container,/datum/vore_organ/breast))
-//			owner.visible_message("<span class='notice'> [owner]'s bosom moves about with prey within.</span>")
 		else
 			if(exterior||escape||owner.stat==2)
 				release(FLAVOUR_ESCAPE,prey)
@@ -514,8 +508,8 @@ var/const/VORE_SIZEDIFF_ANY=5
 	assoc_fluid="semen"
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner.visible_message("<span class='danger'>You hear loud gurgling and slosh from between [owner]'s thighs. Someone must have digested inside their manhood.</span>")
-			prey<<"<span class='warning'>You mostly turn into [owner] [pick("spooge","cum","semen","seed")]. Draining back down and into the balls with the rest of it.</span>"
+			owner.visible_message("<span class='danger'>You hear loud gurgling from between [owner]'s thighs. Someone must have digested inside their manhood.</span>")
+			prey<<"<span class='warning'>You turn into [owner] [pick("spooge","cum","semen","batter","seed")].</span>"
 		else if(source==FLAVOUR_RELEASE)
 			digestion_count+=owner.vore_balls_datum.digestion_count
 			remembered_bans|=owner.vore_balls_datum.remembered_bans
@@ -544,7 +538,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 			else if(!digestion_count&&live_people)
 				owner.visible_message("<span class='notice'>[owner] jacks off, releasing the cum-soaked occupants of their cock.</span>")
 			else
-				owner.visible_message("<span class='notice'>[owner] jacks off, spraying a load of cum onto the floor.</span>")
+				owner.visible_message("<span class='notice'>[owner] jacks off, spraying a load of cum.</span>")
 			owner.vore_balls_datum.release(FLAVOUR_SILENT,prey)
 		else if(source==FLAVOUR_HURL)
 			digestion_count+=owner.vore_balls_datum.digestion_count
@@ -574,15 +568,15 @@ var/const/VORE_SIZEDIFF_ANY=5
 			else if(!digestion_count&&live_people)
 				owner.visible_message("<span class='notice'>[owner] suddenly orgasms, releasing the cum-soaked occupants of their cock.</span>")
 			else
-				owner.visible_message("<span class='notice'>[owner] suddenly orgasms, spraying a load of cum onto the floor.</span>")
+				owner.visible_message("<span class='notice'>[owner] suddenly orgasms, spraying a load of cum.</span>")
 			owner.vore_balls_datum.release(FLAVOUR_SILENT,prey)
 		else if(source==FLAVOUR_ESCAPE&&prey)
 			owner.visible_message("<span class='notice'>[prey] slips out of [owner]'s cock, the smell is quite interesting.</span>")
 		else if(source==FLAVOUR_TRANSFORM)
 			owner<<"Your cock twitches. A transformation is complete."
 		else if(source==FLAVOUR_TRANSFER)
-			owner << "<span class='notice'>Someone moves into your balls. Their weight settles admist the cum-filled orbs</span>"
-			prey<<"<span class='notice'>You move into [owner]'s balls, squeezed out of their cock and into the musky pool of seed. You're now rocking between each other step of your predator's.</span>"
+			owner << "<span class='notice'>Someone moves into your balls.Their weight settling admist the cum-filled orbs</span>"
+			prey<<"<span class='notice'>You move into [owner]'s balls, squeezed out of their cock and into the musky pool of seed. You're now rocking between each other step of .</span>"
 		else ..()
 	check_exist()
 		if(owner.has_cock())
@@ -617,8 +611,8 @@ var/const/VORE_SIZEDIFF_ANY=5
 	assoc_fluid="femjuice"
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s lower belly as a lump rounds and flattens out. Someone must have melted away inside [owner]'s womb.</span>")
-			prey<<"<span class='warning'>You gurgle and slosh away inside [owner]'s womb. Your essence fills them out with just that bit more detail and satisfaction. The lump you made is rounded out and slowly shrinking as you fade into the ether. </span>"
+			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s belly and a lump rounds out and flattens. Someone must have melted away inside [owner]'s womb.</span>")
+			prey<<"<span class='warning'>You gurgle and slosh away inside [owner]'s womb. Your essence fills them out with just that bit more detail and satisfaction. The lump you made is rounded out and slowly shrinking. </span>"
 		else if(source==FLAVOUR_RELEASE)
 			if(istype(owner.loc,/turf))
 				var/already_messy=0
@@ -760,7 +754,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 /datum/vore_organ/tail
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner.visible_message("<span class='danger'>[owner]'s tail gurgles and a lump on it dissipates. Someone must have digested away.</span>")
+			owner.visible_message("<span class='danger'>[owner]'s tail gurgles and a lump on it dissipates. Someone must have digested..</span>")
 			prey<<"<span class='warning'>You gurgle away inside [owner]'s tail, your form softening and adding to the tail's fluff and their curves.</span>"
 		else if(source==FLAVOUR_RELEASE)
 			var/live_people=0
@@ -789,7 +783,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 		else if(source==FLAVOUR_TRANSFORM)
 			owner<<"Your tail twitches. A transformation is complete."
 		else if(source==FLAVOUR_TRANSFER)
-			owner.visible_message("<span class='notice'>A lump in [owner]'s tail moves toward the base. [owner]'s stomach sags with the added weight and a soft gurgle of moving air pockets.</span>")
+			owner.visible_message("<span class='notice'>A lump in [owner]'s tail moves toward the base, [owner]'s stomach sags with the added weight and a soft gurgle of moving air pockets.</span>")
 			prey<<"<span class='notice'>You move into [owner]'s stomach, soaked in the saliva-like drool of the maw. Your new enviroment squeezes all around you.</span>"
 
 
@@ -1085,7 +1079,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 			return vore_stomach_datum
 
 /mob/living/proc/vore_obtain_method(var/mob/living/prey, var/mob/living/helper=src)
-	if(helper!=src&&helper.vore_current_method&src.vore_banned_methods) //TO DO: Make this actually do 'Can't Eat this' not Oral vore default.
+	if(helper!=src&&helper.vore_current_method&src.vore_banned_methods)
 		return VORE_METHOD_FAIL
 	if(helper.vore_current_method&prey.vore_banned_methods)
 		return VORE_METHOD_FAIL

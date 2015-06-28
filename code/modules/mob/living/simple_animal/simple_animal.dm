@@ -80,6 +80,15 @@
 			handle_automated_speech()
 		return 1
 
+	//Handle organs
+	for(var/mob/living/M in stomach_contents)
+		if(M.loc != src)
+			stomach_contents.Remove(M)
+			continue
+	for(var/datum/vore_organ/organ in src.vore_organ_list())
+		organ.digest()
+	//End organ handle
+
 /mob/living/simple_animal/handle_regular_status_updates()
 	if(..()) //alive
 		if(health < 1)
@@ -494,11 +503,11 @@
 /mob/living/simple_animal/update_transform()
 	var/matrix/ntransform = matrix(transform) //aka transform.Copy()
 	var/changed = 0
-	
+
 	if(resize != RESIZE_DEFAULT_SIZE)
 		changed++
 		ntransform.Scale(resize)
 		resize = RESIZE_DEFAULT_SIZE
-	
+
 	if(changed)
 		animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)

@@ -15,8 +15,16 @@
 	if(!client && stat == CONSCIOUS)
 		if(prob(33) && canmove && isturf(loc) && !pulledby && !grabbed_by.len)
 			step(src, pick(cardinal))
-		if(prob(1))
-			emote(pick("scratch","jump","roll","tail"))
+/* 		if(prob(1))
+			emote(pick("scratch","jump","roll","tail")) emote spam makes admins mad :^(  */
+
+	//Handle organ stuff
+	for(var/mob/living/M in stomach_contents)
+		if(M.loc != src)
+			stomach_contents.Remove(M)
+			continue
+	for(var/datum/vore_organ/organ in src.vore_organ_list())
+		organ.digest()
 
 /mob/living/carbon/monkey/handle_mutations_and_radiation()
 

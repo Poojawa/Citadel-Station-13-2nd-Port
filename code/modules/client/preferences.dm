@@ -243,7 +243,7 @@ datum/preferences
 				dat += "<b>Socks:</b><BR><a href ='?_src_=prefs;preference=socks;task=input'>[socks]</a><BR>"
 				dat += "<b>Backpack:</b><BR><a href ='?_src_=prefs;preference=bag;task=input'>[backbaglist[backbag]]</a><BR></td>"
 
-				dat += "<a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>Set Flavor Text</b></a><br>"
+				//dat += "<a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>Set Flavor Text</b></a><br>"
 
 				dat += "<h3>Wings</h3>"
 
@@ -833,10 +833,7 @@ datum/preferences
 					if("character_size")
 						var/new_size = input(user, "Choose your character's size:", "Character Preference")  in list("big", "normal", "small", "tiny")
 						if(new_size)
-							if( (new_size=="big" || new_size=="tiny") && !is_whitelisted(ckey))
-								user << "You need to be whitelisted for this size."
-							else
-								character_size=new_size
+							character_size=new_size
 
 					if("vore_panel")
 						var/obj/vore_preferences/VP=new()
@@ -844,11 +841,7 @@ datum/preferences
 						VP.ShowChoices(user)
 
 					if("be_taur")
-						if(!is_whitelisted(ckey))
-							be_taur=0
-							user << "You need to be whitelisted."
-						else
-							be_taur = !be_taur
+						be_taur = !be_taur
 
 					if("s_tone")
 						var/new_s_tone = input(user, "Choose your character's skin-tone:", "Character Preference")  as null|anything in skin_tones

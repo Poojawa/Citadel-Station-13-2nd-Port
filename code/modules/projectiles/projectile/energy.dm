@@ -60,11 +60,14 @@
 	damage = 15
 	damage_type = TOX
 	nodamage = 0
-	weaken = 5
-	stutter = 5
+	weaken = 4
+	stutter = 4
+	range = 10
 
 /obj/item/projectile/energy/bolt/large
 	damage = 20
+	weaken = 6
+	range = 15
 
 /obj/item/ammo_casing/energy/plasma
 	projectile_type = /obj/item/projectile/plasma

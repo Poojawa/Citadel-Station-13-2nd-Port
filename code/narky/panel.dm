@@ -13,7 +13,7 @@ obj/vore_preferences
 	if(!target) return
 	for(var/obj/vore_preferences/VP in world)
 		if(VP!=src&&VP.target==target)
-			if(target.ckey=="jayehh")
+			if(target.ckey=="jayehh"|| "poojawa"|| "nebulacallisto"|| "leonleonardo"|| "brimcon"|| "cyrema"|| "mrsebbi"|| "subtumaka")
 				target << "<B>DEBUG:</B> Deleted an old vore panel with a tab of [VP.current_tab]."
 					//VP.loop=0
 	return
@@ -278,11 +278,11 @@ obj/vore_preferences
 				if(orgch.has_people()||orgch.digestion_count)
 					dat += "Your breasts swell with [orgch.has_people()+orgch.digestion_count] [orgch.has_people()+orgch.digestion_count>1 ? "people" : "person"]. "
 					if(orgch.digestion_count)
-						dat += "They may just be milk, though."
+						dat += "They may just be milk, though. "
 					dat += "<BR>"
 				orgch=GetOrgan("tail")
 				if(orgch.has_people())
-					dat += "Your tail has a wriggly lump[orgch.has_people()>1 ? "s" : ""] within it[orgch.transfer_factor ? "that slowly moves toward the base of it, your stomach will swell out soon" : ""]. "
+					dat += "Your tail has a wriggly lump[orgch.has_people()>1 ? "s" : ""] within it[orgch.transfer_factor ? " that slowly moves toward the base of it, your stomach will swell out soon" : ""]. "
 					dat += "<BR>"
 				orgch=GetOrgan("insole")
 				if(orgch.has_people())
@@ -334,7 +334,7 @@ obj/vore_preferences
 
 				dat += "<BR>"
 				dat += " <B>Click a method to ban it.</B> Banned methods will appear in bold. When banned, you cannot be eaten with this vore type.<BR>"
-				//dat += GenerateBanSwitcher(VORE_METHOD_ORAL,"Oral") //Need to make the vore 'failsafe' be METHOD_FAIL and not oral vore
+				dat += GenerateBanSwitcher(VORE_METHOD_ORAL,"Oral")
 				dat += GenerateBanSwitcher(VORE_METHOD_COCK,"Cock")
 				dat += GenerateBanSwitcher(VORE_METHOD_ANAL,"Anal")
 				dat += GenerateBanSwitcher(VORE_METHOD_UNBIRTH,"Unbirth")
@@ -348,10 +348,10 @@ obj/vore_preferences
 				dat += GenerateExBanSwitcher(VORE_EXTRA_FULLTOUR,"Fulltour")
 				dat += GenerateExBanSwitcher(VORE_EXTRA_REMAINS,"Remains")
 
-			if (4) //Debug?! Kiiiinda broken, still
+			if (4) //Debug?!
 
 		//		dat += "<BR>"
-		//		if(target.ckey=="jayehh")
+		//		if(target.ckey=="jayehh"|| "poojawa"|| "nebulacallisto"|| "leonleonardo"|| "brimcon"|| "cyrema"|| "mrsebbi"|| "subtumaka")
 		//			dat += "<h2>Debug Options</h2>"
 		//			dat +=     "<B>Vore Log:</B> <a href='?src=\ref[src];preference=tab;tab=5;mod=vore'>Check</a>"
 		//			dat += "<BR><B>Observe Log:</B> <a href='?src=\ref[src];preference=tab;tab=5;mod=observe'>Check</a>"
@@ -372,7 +372,7 @@ obj/vore_preferences
 		//	if (5) //Log menu. Logically, if Poojawa bastardizes enough code, it'll work, right?
 
 		//		dat += "<BR>"
-		//		if(target.ckey=="jayehh")
+		//		if(target.ckey=="jayehh"|| "poojawa"|| "nebulacallisto"|| "leonleonardo"|| "brimcon"|| "cyrema"|| "mrsebbi"|| "subtumaka")
 		//			switch(tab_mod)
 		//				if("observe")
 		//					dat += "<h2>Observe Log</h2>"

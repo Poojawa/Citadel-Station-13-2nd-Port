@@ -6,9 +6,9 @@
 	icon_dead = "piratemelee_dead"
 	speak_chance = 0
 	turns_per_move = 5
-	response_help = "pushes"
+	response_help = "hugs"
 	response_disarm = "shoves"
-	response_harm = "hits"
+	response_harm = "punches"
 	speed = 0
 	maxHealth = 100
 	health = 100
