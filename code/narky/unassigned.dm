@@ -1022,11 +1022,11 @@ var/const/VORE_SIZEDIFF_ANY=5
 		qdel(G)
 
 	if(helper==src)
-		vore_admins("[src] has eaten [prey]. Code [method].",src,prey)
+		vore_admins("[src] has eaten [prey]. via [method].",src,prey)
 	else if(helper==prey)
-		vore_admins("[prey] has fed themself to [src]. Code [method].",src,prey)
+		vore_admins("[prey] has fed themself to [src]. via [method].",src,prey)
 	else
-		vore_admins("[helper] has fed [prey] to [src]. Code [method].",src,prey)
+		vore_admins("[helper] has fed [prey] to [src]. via [method].",src,prey)
 
 	var/datum/vore_organ/destination=vore_organ_for_method(method)
 	destination.add(prey)
@@ -1080,33 +1080,33 @@ var/const/VORE_SIZEDIFF_ANY=5
 
 /mob/living/proc/vore_obtain_method(var/mob/living/prey, var/mob/living/helper=src)
 	if(helper!=src&&helper.vore_current_method&src.vore_banned_methods)
-		return VORE_METHOD_FAIL
+		return VORE_METHOD_ORAL
 	if(helper.vore_current_method&prey.vore_banned_methods)
-		return VORE_METHOD_FAIL
+		return VORE_METHOD_ORAL
 	for(var/mob/living/check in prey)
 		if(helper.vore_current_method&check.vore_banned_methods)
-			return VORE_METHOD_FAIL
+			return VORE_METHOD_ORAL
 	/*if((helper.vore_current_method&prey.vore_banned_methods)||(helper.vore_current_method&src.vore_banned_methods)) //Check for bans.
 		return VORE_METHOD_ORAL*/
 	//To do: Add in checks for muzzles.
 	if(!vore_ability_check(helper.vore_current_method,prey)) //Is this even possible?
-		return VORE_METHOD_FAIL
+		return VORE_METHOD_ORAL
 	else if(helper.vore_current_method==VORE_METHOD_INSOLE) //Temporary
 		var/mob_count=0
 		for(var/mob/M in src.vore_insole_datum.contents)
 			mob_count+=1
 			if(mob_count>1)
-				return VORE_METHOD_FAIL
+				return VORE_METHOD_ORAL
 	else if(helper.vore_current_method==VORE_METHOD_INSUIT) //Temporary, too
 		var/mob_count=0
 		for(var/mob/M in src.vore_insuit_datum.contents)
 			mob_count+=1
 			if(mob_count>2)
-				return VORE_METHOD_FAIL
+				return VORE_METHOD_ORAL
 	else if(helper.vore_current_method==VORE_METHOD_TAIL)
 		if(!src.kpcode_mob_has_tail())
-			return VORE_METHOD_FAIL
-	return //helper.vore_current_method
+			return VORE_METHOD_ORAL
+	return helper.vore_current_method
 
 /mob/living/proc/vore_speed(var/mob/living/prey, var/method)
 	return 60+((prey.sizeplay_size-sizeplay_size)*10)
@@ -1830,8 +1830,8 @@ var/list/traitor_test_list = null
 
 
 
-/*
-/mob/living/proc/set_vore_digest()
+
+/mob/living/proc/set_vore_digest() //possibly mobs?
 	set name = "Digestion Toggle"
 	set category = "Vore"
 	if(!src.vore_datums_initialized) src.vore_init_datums()
@@ -1850,7 +1850,7 @@ var/list/traitor_test_list = null
 	vore_stomach_datum.digestion_factor=VORE_DIGESTION_SPEED_NONE
 	vore_cock_datum.digestion_factor=VORE_DIGESTION_SPEED_NONE
 	vore_womb_datum.digestion_factor=VORE_DIGESTION_SPEED_NONE
-	src << "No longer digesting."*/
+	src << "No longer digesting."
 
 
 /mob/living/proc/vore_release_stomach()
@@ -1952,13 +1952,13 @@ var/list/traitor_test_list = null
 	return gender==FEMALE
 
 
-/mob/living/New()
+/mob/living/New() //
 	//verbs += /mob/living/proc/set_vore_abil
 	//verbs += /mob/living/proc/set_vore_debil
 	//verbs += /mob/living/proc/set_vore_mode
 	//verbs += /mob/living/proc/set_vore_ban
 	//verbs += /mob/living/proc/set_vore_unban
-	//verbs += /mob/living/proc/set_vore_digest
+	//verbs += /mob/living/proc/digest
 	//verbs += /mob/living/proc/set_vore_transform
 	//verbs += /mob/living/proc/vore_release_stomach
 	//verbs += /mob/living/proc/vore_release_cock

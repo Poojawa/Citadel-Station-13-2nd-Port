@@ -53,6 +53,7 @@
 	action_icon_state = "mutate"
 	sound = "sound/magic/Mutate.ogg"
 
+/* Because OP as fuck
 /obj/effect/proc_holder/spell/targeted/inflict_handler/disintegrate
 	name = "Disintegrate"
 	desc = "This spell instantly kills somebody adjacent to you with the vilest of magick."
@@ -72,6 +73,8 @@
 
 	action_icon_state = "gib"
 	sound = "sound/magic/Disintegrate.ogg"
+
+*/
 
 /obj/effect/proc_holder/spell/targeted/smoke
 	name = "Smoke"
