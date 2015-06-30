@@ -204,7 +204,7 @@ obj/vore_preferences
 				if(!container)
 					dat += "You are not currently inside someone."
 				else if(istype(container,/datum/vore_organ/stomach))
-					dat += "You are in [container.owner]'s stomach. It is soft, wet, and moving.The walls gently squeeze around you from all sides as their heartbeat and breathing echo in your ears. The gurgles of their digestive system rumble all around you, but you're safe for now."
+					dat += "You are in [container.owner]'s stomach. It is soft, wet, and moving.The walls gently squeeze around you from all sides as their heartbeat and breathing echo in your ears. The gurgles of their digestive system rumble all around you."
 					if(container.digestion_factor==VORE_DIGESTION_SPEED_SLOW)
 						dat += "You feel a slight, burning tingle on your skin.The walls work at kneading over your form to soften you up. You're being digested! "
 					else if(container.digestion_factor)
@@ -334,7 +334,7 @@ obj/vore_preferences
 
 				dat += "<BR>"
 				dat += " <B>Click a method to ban it.</B> Banned methods will appear in bold. When banned, you cannot be eaten with this vore type.<BR>"
-				dat += GenerateBanSwitcher(VORE_METHOD_ORAL,"Oral")
+				//dat += GenerateBanSwitcher(VORE_METHOD_ORAL,"Oral") Doesn't work yet
 				dat += GenerateBanSwitcher(VORE_METHOD_COCK,"Cock")
 				dat += GenerateBanSwitcher(VORE_METHOD_ANAL,"Anal")
 				dat += GenerateBanSwitcher(VORE_METHOD_UNBIRTH,"Unbirth")

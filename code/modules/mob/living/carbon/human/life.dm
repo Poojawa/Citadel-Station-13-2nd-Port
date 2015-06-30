@@ -54,10 +54,15 @@
 /mob/living/carbon/human/calculate_affecting_pressure(var/pressure)
 	if((wear_suit && (wear_suit.flags & STOPSPRESSUREDMAGE)) && (head && (head.flags & STOPSPRESSUREDMAGE)))
 		return ONE_ATMOSPHERE
+
+	if(istype(loc, /mob/living/carbon/human))
+		return ONE_ATMOSPHERE || STOPSPRESSUREDMAGE
+
+	if(istype(loc, /mob/living/carbon/alien))
+		return ONE_ATMOSPHERE || STOPSPRESSUREDMAGE
+
 	else
 		return pressure
-
-	if(istype(loc, /mob/living/carbon/human)) return ONE_ATMOSPHERE
 
 
 /mob/living/carbon/human/handle_disabilities()
@@ -81,7 +86,7 @@
 				if(2)
 					say(pick("FUS RO DAH","fucking 4rries!", "stat me", ">my face", "roll it easy!", "waaaaaagh!!!", "red wonz go fasta", "FOR TEH EMPRAH", "lmao2cat", "dem dwarfs man, dem dwarfs", "SPESS MAHREENS", "hwee did eet fhor khayosss", "lifelike texture ;_;", "luv can bloooom", "PACKETS!!!", "port ba[pick("y", "i", "e")] med!!!!", "CEMISTRY SUKS!!!!!!!!", "youed call her a toeugh bithc", "git gud!!", "CHEMIT GIB HALNOM PLS", "PLASMA iS MENT 2 BE FREE", "LoL tROLED U", "SEC IS A REV, LINCH!!", "FUCK U IM WAY MORE ROBUST u bITCH!!1!!", "iS tHis bay?", "NO PRED CAN eVER CATCH MI", "SCIENCE GIB SHINK RAY PLS", "KILL PUNPUN 4 FUN xDD", "ooc wow rly?", "aI state dem1!", "SINGULO eNGINE 2 DANGER, SOLARS PLS!", "nerf blob!1", "iM NOT A FUWRRYY!!", "FOURTEEN INCHES SOFT"))
 				if(3)
-					say(pick("GEY AWAY FROM ME U GREIFING PRICK!!!!", ";HELP SHITECIRTY MURDERIN  MEE!!!", ";CAL; tEH SHUTTLE!!!!!", ";wearnig siNGUARLTY IS .... FIne xDDDDDDDDD", ";AI laW 22 Opin airlok", ";this SI mY stATIon......", "who the HELL do u thenk u r?!!!!", "geT THE FUCK OUTTTT", ";;CRAGING THIS STTAYTION WITH NIO SURVIVROS", "i shure hop dere are no PRED arund!!!!", "i play [pick("heds", "ceptin", "hop")] to only ORDER not DO", "erp?", "i want to digest u!!!", "CRAGO ORDER [pick("GUNS", "HATS", "GLOWY CYSTAL")] PLS", "NOM!1!", "iF it COMPILES it werks!", "LYNCH RObOTIKS NOT GIBING ME MECH WTF?/?", "GWURGLE!!", "ahelp kan i b [pick("ert", "shadowlig", "ninja", "admen")]", "balid saled!", "LINCH VIRO", "VIRO GIB SuPR VIrUS!!", "Ai plai vxtest2!"))
+					say(pick("GEY AWAY FROM ME U GREIFING PRICK!!!!", ";HELP SHITECIRTY MURDERIN  MEE!!!", ";CAL; tEH SHUTTLE!!!!!", ";wearnig siNGUARLTY IS .... FIne xDDDDDDDDD", ";AI laW 22 Opin airlok", ";this SI mY stATIon......", "who the HELL do u thenk u r?!!!!", "geT THE FUCK OUTTTT", ";;CRAGING THIS STTAYTION WITH NIO SURVIVROS", "i shure hop dere are no PRED arund!!!!", "i play [pick("heds", "ceptin", "hop")] to only ORDER not DO", "erp?", "i want to digest u!!!", "CRAGO ORDER [pick("GUNS", "HATS", "GLOWY CYSTAL", "PIZZA")] PLS", "NOM!1!", "iF it COMPILES it werks!", "LYNCH RObOTIKS NOT GIBING ME MECH WTF?/?", "GWURGLE!!", "ahelp kan i b [pick("ert", "shadowlig", "ninja", "admen")]", "balid saled!", "LINCH VIRO", "VIRO GIB SuPR VIrUS!!", "Ai plai vxtest2!"))
 				if(4)
 					say(pick(";taitor trie to make meh malk/?!1!1", ";ENGIE TATOR HE SET UP SINGULO!!11", "WHEN NAGAS ADdED?/?", "SINDYIE ON SAtIONS GiB gUNS PLISE", "CcLOWN IV SlIPPING MI, SEc t BAR@", "ahelp iT's RP vALiDZ!", "HYDROBONIX PLS WEED PLIESe PLIsE BLAzE IT1!!!", "HALP GOLIATH TENETCAL RAPPPP!!!!111", "DudSE it'S 4:20 LmAO BLAZZ IT xDDDDD", "DRONE TOOK METAL kIlL It!1!"))
 
@@ -166,7 +171,14 @@
 	return thermal_protection_flags
 
 /mob/living/carbon/human/proc/get_heat_protection(temperature) //Temperature is the temperature you're being exposed to.
+	if(istype(loc, /mob/living/carbon/human))
+		return 1
+
+	if(istype(loc, /mob/living/carbon/alien))
+		return 1
+
 	var/thermal_protection_flags = get_heat_protection_flags(temperature)
+
 
 	var/thermal_protection = 0.0
 	if(thermal_protection_flags)
@@ -228,6 +240,12 @@
 		return 1 //Fully protected from the cold.
 
 	if(dna && COLDRES in dna.species.specflags)
+		return 1
+
+	if(istype(loc, /mob/living/carbon/human))
+		return 1
+
+	if(istype(loc, /mob/living/carbon/alien))
 		return 1
 
 	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
