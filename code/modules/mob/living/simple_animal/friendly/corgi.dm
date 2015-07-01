@@ -336,7 +336,7 @@
 				valid = 1
 
 			if(/obj/item/clothing/head/helmet/space/hardsuit/deathsquad)
-				name = "Trooper [real_name]"
+				name = "Trooper Thugfist Mc[real_name]"
 				desc = "That's not red paint. That's real corgi blood."
 				valid = 1
 

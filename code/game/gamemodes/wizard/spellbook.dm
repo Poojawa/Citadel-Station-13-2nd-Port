@@ -64,8 +64,8 @@
 		dat += "<A href='byond://?src=\ref[src];spell_choice=fireball'>Fireball</A> (10)<BR>"
 		dat += "<I>This spell fires a fireball in the direction you're facing and does not require wizard garb. Be careful not to fire it at people that are standing next to you.</I><BR>"
 
-		dat += "<A href='byond://?src=\ref[src];spell_choice=disintegrate'>Disintegrate</A> (60)<BR>"
-		dat += "<I>This spell instantly kills somebody adjacent to you with the vilest of magick. It has a long cooldown.</I><BR>"
+//		dat += "<A href='byond://?src=\ref[src];spell_choice=disintegrate'>Disintegrate</A> (60)<BR>"
+//		dat += "<I>This spell instantly kills somebody adjacent to you with the vilest of magick. It has a long cooldown.</I><BR>"
 
 		dat += "<A href='byond://?src=\ref[src];spell_choice=disabletech'>Disable Technology</A> (60)<BR>"
 		dat += "<I>This spell disables all weapons, cameras and most other technology in range.</I><BR>"
@@ -146,13 +146,13 @@
 		dat += "These items are not bound to you and can be stolen. Additionaly they cannot typically be returned once purchased.<BR>"
 		dat += "<HR>"
 
-		dat += "<A href='byond://?src=\ref[src];spell_choice=staffchange'>Staff of Change</A><BR>"
-		dat += "<I>An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself.</I><BR>"
-		dat += "<HR>"
+//		dat += "<A href='byond://?src=\ref[src];spell_choice=staffchange'>Staff of Change</A><BR>"
+//		dat += "<I>An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself.</I><BR>"
+//		dat += "<HR>"
 
-		dat += "<A href='byond://?src=\ref[src];spell_choice=staffanimation'>Staff of Animation</A><BR>"
-		dat += "<I>An arcane staff capable of shooting bolts of eldritch energy which cause inanimate objects to come to life. This magic doesn't affect machines.</I><BR>"
-		dat += "<HR>"
+//		dat += "<A href='byond://?src=\ref[src];spell_choice=staffanimation'>Staff of Animation</A><BR>"
+//		dat += "<I>An arcane staff capable of shooting bolts of eldritch energy which cause inanimate objects to come to life. This magic doesn't affect machines.</I><BR>"
+//		dat += "<HR>"
 
 		dat += "<A href='byond://?src=\ref[src];spell_choice=staffdoor'>Staff of Door Creation</A><BR>"
 		dat += "<I>A particular staff that can mold solid metal into ornate wooden doors. Useful for getting around in the absence of other transportation. Does not work on glass.</I><BR>"
@@ -223,7 +223,7 @@
 				uses--
 			/*
 			*/
-				var/list/available_spells = list(magicmissile = "Magic Missile", fireball = "Fireball", disintegrate = "Disintegrate", disabletech = "Disable Tech", repulse = "Repulse", smoke = "Smoke", blind = "Blind", mindswap = "Mind Transfer", forcewall = "Forcewall", blink = "Blink", teleport = "Teleport", mutate = "Mutate", etherealjaunt = "Ethereal Jaunt", knock = "Knock", barnyard = "Curse of the Barnyard", fleshtostone = "Flesh to Stone", summonitem = "Instant Summons", summonguns = "Summon Guns", summonmagic = "Summon Magic", summonevents = "Summon Events", staffchange = "Staff of Change", soulstone = "Six Soul Stone Shards and the spell Artificer", necrostone = "A Necromantic Stone", armor = "Mastercrafted Armor Set", staffanimate = "Staff of Animation", staffchaos = "Staff of Chaos", staffdoor = "Staff of Door Creation", wands = "Wand Assortment", lightningbolt = "Lightning Bolt")
+				var/list/available_spells = list(magicmissile = "Magic Missile", fireball = "Fireball", disabletech = "Disable Tech", repulse = "Repulse", smoke = "Smoke", blind = "Blind", mindswap = "Mind Transfer", forcewall = "Forcewall", blink = "Blink", teleport = "Teleport", mutate = "Mutate", etherealjaunt = "Ethereal Jaunt", knock = "Knock", barnyard = "Curse of the Barnyard", fleshtostone = "Flesh to Stone", summonitem = "Instant Summons", summonguns = "Summon Guns", summonmagic = "Summon Magic", summonevents = "Summon Events", staffchange = "Staff of Change", soulstone = "Six Soul Stone Shards and the spell Artificer", necrostone = "A Necromantic Stone", armor = "Mastercrafted Armor Set", /*staffanimate = "Staff of Animation"*/, staffchaos = "Staff of Chaos", staffdoor = "Staff of Door Creation", wands = "Wand Assortment", lightningbolt = "Lightning Bolt")
 				var/already_knows = 0
 				for(var/obj/effect/proc_holder/spell/aspell in H.mind.spell_list)
 					if(available_spells[href_list["spell_choice"]] == initial(aspell.name))
@@ -265,10 +265,10 @@
 							feedback_add_details("wizard_spell_learned","FB") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
 							H.mind.AddSpell(new /obj/effect/proc_holder/spell/dumbfire/fireball(null))
 							temp = "You have learned fireball."
-						if("disintegrate")
-							feedback_add_details("wizard_spell_learned","DG") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/inflict_handler/disintegrate(null))
-							temp = "You have learned disintegrate."
+//						if("disintegrate")
+//							feedback_add_details("wizard_spell_learned","DG") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
+//							H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/inflict_handler/disintegrate(null))
+//							temp = "You have learned disintegrate."
 						if("disabletech")
 							feedback_add_details("wizard_spell_learned","DT") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
 							H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/emplosion/disable_tech(null))
@@ -347,11 +347,11 @@
 							playsound(get_turf(H),"sound/magic/CastSummon.ogg",50,1)
 							max_uses--
 							temp = "You have cast summon events."
-						if("staffchange")
-							feedback_add_details("wizard_spell_learned","ST") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/weapon/gun/magic/staff/change(get_turf(H))
-							temp = "You have purchased a staff of change."
-							max_uses--
+//						if("staffchange")
+//							feedback_add_details("wizard_spell_learned","ST") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
+//							new /obj/item/weapon/gun/magic/staff/change(get_turf(H))
+//							temp = "You have purchased a staff of change."
+//							max_uses--
 						if("soulstone")
 							feedback_add_details("wizard_spell_learned","SS") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
 							new /obj/item/weapon/storage/belt/soulstone/full(get_turf(H))
@@ -370,11 +370,11 @@
 							new /obj/item/clothing/suit/space/hardsuit/wizard(get_turf(H))
 							temp = "You have purchased a suit of wizard armor."
 							max_uses--
-						if("staffanimation")
-							feedback_add_details("wizard_spell_learned","SA") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/weapon/gun/magic/staff/animate(get_turf(H))
-							temp = "You have purchased a staff of animation."
-							max_uses--
+//						if("staffanimation")
+//							feedback_add_details("wizard_spell_learned","SA") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
+//							new /obj/item/weapon/gun/magic/staff/animate(get_turf(H))
+//							temp = "You have purchased a staff of animation."
+//							max_uses--
 						if("staffchaos")
 							feedback_add_details("wizard_spell_learned","SC") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
 							new /obj/item/weapon/gun/magic/staff/chaos(get_turf(H))
