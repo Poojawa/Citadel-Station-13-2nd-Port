@@ -606,8 +606,8 @@
 				threatcount += 4
 			if(judgebot.check_for_weapons(belt))
 				threatcount += 3
-			if(judgebot.check_for_weapons(slot_s_store))
-				threatcount += 3
+		//	if(judgebot.check_for_weapons(slot_s_store))
+		//		threatcount += 3
 
 	//Check for arrest warrant
 	if(judgebot.check_records)

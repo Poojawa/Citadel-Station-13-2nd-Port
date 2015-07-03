@@ -1,0 +1,50 @@
+################################
+# Example Changelog File
+#
+# Note: This file, and files beginning with ".", and files that don't end in ".yml" will not be read. If you change this file, you will look really dumb.
+#
+# Your changelog will be merged with a master changelog. (New stuff added only, and only on the date entry for the day it was merged.)
+# When it is, any changes listed below will disappear.
+#
+# Valid Prefixes: 
+#   bugfix
+#   wip (For works in progress)
+#   tweak
+#   soundadd
+#   sounddel
+#   rscadd (general adding of nice things)
+#   rscdel (general deleting of nice things)
+#   imageadd
+#   imagedel
+#   spellcheck (typo fixes)
+#   experiment
+#   tgs (TG-ported fixes?)
+#################################
+
+# Your name.  
+author: Poojawa
+
+# Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
+delete-after: True
+
+# Any changes you've made.  See valid prefix list above.
+# INDENT WITH TWO SPACES.  NOT TABS.  SPACES.
+# SCREW THIS UP AND IT WON'T WORK.
+# Also, this gets changed to [] after reading.  Just remove the brackets when you add new shit.
+# Please surround your changes in  double quotes ("). It works without them, but if you use certain characters it screws up compiling. The quotes will not show up in the changelog.
+changes: 
+  - rscadd: "Vore flavor text, both while consuming and the 'inside' tab."
+  - bugfix: "People inside of another are protected from elements as long as predator is still alive"
+  - tweak: "Emags have 10 uses now, don't click doors you have access to!"
+  - tweak: "Beepsky will arrest nukeops and wizards on sight."
+  - tweak: "Beepsky will also note weapons on your suit."
+  - rscadd: "New fox tails! Fennec tails to be redone as well."
+  - wip: "Overhaul of species, wagging tails and such are in the works using mutantrace."
+  - tweak: "AI Sat turret health buffed, shouldn't die nearly as easily."
+  - rscadd: "AI turret protecting the SMES unit is now able to be turned to lethal for malf/tator AI."
+  - rscadd: "Armory and HoS rooms have panic buttons, required access being access to those rooms."
+  - rscadd: "CMO office has privacy shutters."
+  - rscdel: "Wizard doesn't have staves of change, animation. El Nath commented out. Wand of polymorph limited to 4 uses."
+  - bugfix: "Mobs have controllable guts now, you won't die horribly of o2 loss. They will digest if not controlled!"
+  - experiment: "Security armor has become more robust against syringe guns."
+  - rscadd: "Admin logs for vore events. We can see eeeeverything."
